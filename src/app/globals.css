@@ -2,7 +2,13 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #242424;
+  --gusho-orange: #e68054;
+  --gusho-green: #4bb548;
+  --gusho-yellow: #dec64b;
+  --gusho-cyan: #4cadc2;
+  --gusho-purple: #b461c8;
+  --font-en: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, sans-serif;
 }
 
 @theme inline {
@@ -12,15 +18,68 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-en {
+  font-family: var(--font-en);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes word-slot {
+  0%,
+  26% {
+    transform: translateY(0);
+  }
+  33%,
+  59% {
+    transform: translateY(-33.333333%);
+  }
+  66%,
+  93% {
+    transform: translateY(-66.666667%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-word-slot {
+  animation: word-slot 9s ease-in-out infinite;
+}
+
+@keyframes marquee-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-logos {
+  animation: marquee-logos 55s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-word-slot,
+  .animate-marquee-logos {
+    animation: none;
+  }
+
+  .scroll-reveal {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
 }

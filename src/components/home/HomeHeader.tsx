@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const navBold =
-  "font-en text-xl font-bold leading-[1.4] text-white hover:line-through";
-const navReg =
-  "font-en text-xl font-normal leading-[1.4] text-white hover:line-through";
-const navBoldLight =
-  "font-en text-xl font-bold leading-[1.4] text-[#242424] hover:line-through";
-const navRegLight =
-  "font-en text-xl font-normal leading-[1.4] text-[#242424] hover:line-through";
+/** 左→右へ走る打ち消し線（::after + scale-x） */
+const strikeFromLeft =
+  "relative inline-block after:pointer-events-none after:absolute after:left-0 after:top-1/2 after:h-px after:w-full after:-translate-y-1/2 after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100";
+
+const navBold = `font-en text-xl font-bold leading-[1.4] text-white ${strikeFromLeft}`;
+const navReg = `font-en text-xl font-normal leading-[1.4] text-white ${strikeFromLeft}`;
+const navBoldLight = `font-en text-xl font-bold leading-[1.4] text-[#242424] ${strikeFromLeft}`;
+const navRegLight = `font-en text-xl font-normal leading-[1.4] text-[#242424] ${strikeFromLeft}`;
 
 export function HomeHeader() {
   const [onLight, setOnLight] = useState(false);

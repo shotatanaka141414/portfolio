@@ -1,14 +1,31 @@
 import Image from "next/image";
 
+import { ImageWithFallback } from "./ImageWithFallback";
+
 const BIO =
   "大手広告代理店制作会社、大手コンサルティング会社にて、事業のリブランディング、サービスリニューアルのUI・情報設計・サービス設計を担当。デザイン支援をしたサービスはデザイン賞やリニューアル後売上３倍以上にした実績を持つ。デザイン思考に基づいたプランニング、ユーザーのニーズを引き出すインタビュー設計、ニーズに基づいた体験設計・情報設計、ブランドを昇華させるUIデザインに情熱を注ぎ、デザインリサーチからアウトプットまで一気通貫した活動を行っている。現在は独立し、あらゆる企業のデザイン支援、ベンチャー企業のCDOとして活動している。";
 
-const AWARD_LABELS = [
-  "iF Design",
-  "Red Dot",
-  "Good Design",
-  "CES Innovation",
+/** 格納: public/images/home/awards/<slug>.png — iF のみロゴが横長のため frame を分岐 */
+const AWARDS = [
+  { slug: "if-design", label: "iF Design", frame: "landscape" as const },
+  { slug: "red-dot", label: "Red Dot", frame: "square" as const },
+  { slug: "good-design", label: "Good Design", frame: "square" as const },
+  { slug: "ces-innovation", label: "CES Innovation", frame: "square" as const },
 ] as const;
+
+function awardFrameClass(frame: "square" | "landscape") {
+  if (frame === "landscape") {
+    return "relative h-[100px] w-[160px] shrink-0 overflow-hidden sm:h-[133px] sm:w-[212px]";
+  }
+  return "relative h-[100px] w-[100px] shrink-0 overflow-hidden sm:h-[133px] sm:w-[133px]";
+}
+
+function awardFallbackClass(frame: "square" | "landscape") {
+  if (frame === "landscape") {
+    return "flex h-[100px] w-[160px] shrink-0 items-center justify-center bg-zinc-100 text-center font-en text-[10px] font-bold leading-tight text-zinc-600 sm:h-[133px] sm:w-[212px] sm:text-xs";
+  }
+  return "flex h-[100px] w-[100px] shrink-0 items-center justify-center bg-zinc-100 text-center font-en text-[10px] font-bold leading-tight text-zinc-600 sm:h-[133px] sm:w-[133px] sm:text-xs";
+}
 
 export function ProfileIntroSection() {
   return (
@@ -37,14 +54,22 @@ export function ProfileIntroSection() {
             <p className="font-en text-[32px] font-bold leading-[1.5] text-[#242424]">
               Award
             </p>
-            <div className="flex flex-wrap gap-6">
-              {AWARD_LABELS.map((label) => (
-                <div
-                  key={label}
-                  className="flex h-[100px] w-[100px] shrink-0 items-center justify-center border border-zinc-200 bg-zinc-100 text-center font-en text-[10px] font-bold leading-tight text-zinc-600 sm:h-[133px] sm:w-[133px] sm:text-xs"
-                >
-                  {label}
-                </div>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {AWARDS.map(({ slug, label, frame }) => (
+                <ImageWithFallback
+                  key={slug}
+                  src={`/images/home/awards/${slug}.png`}
+                  alt={label}
+                  containerClassName={awardFrameClass(frame)}
+                  className={
+                    frame === "landscape"
+                      ? "px-2 py-1.5 sm:px-3 sm:py-2"
+                      : "p-2"
+                  }
+                  fallback={
+                    <div className={awardFallbackClass(frame)}>{label}</div>
+                  }
+                />
               ))}
             </div>
           </div>

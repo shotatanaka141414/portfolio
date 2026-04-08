@@ -1,19 +1,26 @@
-import Image from "next/image";
+import { CareerLogoSlot } from "./CareerLogoSlot";
 
+/**
+ * CAREER ロゴ画像の格納先: public/images/home/career/
+ * - gusho.png（または .svg）
+ * - accenture.png
+ * - hakuhodo-i-studio.png
+ */
 const ENTRIES = [
   {
     period: "Today",
     org: "独立 / GUSHO",
     title: "合同会社GUSHO\nCEO/CDO",
     body: "2024年3月に法人を設立し、あらゆる企業のデザイン支援、ベンチャー企業のCDOとして活動している。",
-    logoSrc: "/images/home/header-mark.svg" as string | undefined,
+    logoSrc: "/images/home/career/gusho.png",
+    logoFallback: "gusho" as const,
   },
   {
     period: "2019.9 ~ 2023.11",
     org: "Accenture inc.",
     title: "アクセンチュア株式会社\nインタラクションデザイナー",
     body: "インタラクションデザイナーとして、KDDI、Hondaの他、Web3.0、生成AI、金融、保険、化粧品など様々な業界の新規サービス・リニューアルを支援。UIUXのみならずサービスデザイン領域にも情熱を注ぎ、250人以上にユーザーテスト・インタビューを実施。ユーザーの潜在的なニーズを重要視したデザイン制作を心掛けた。",
-    logoSrc: undefined as string | undefined,
+    logoSrc: "/images/home/career/accenture.png",
     logoFallback: "accenture" as const,
   },
   {
@@ -21,51 +28,10 @@ const ENTRIES = [
     org: "HAKUHODO I-STUDIO",
     title: "株式会社博報堂アイ・スタジオ\nUX/UIデザイナー",
     body: "NISSAN、JTの他、物流、建築、電器機器などのWEBサービスのUI・UXを担当。200~1000ページ強ある大型コーポレートサイトを多く担当し、 実装工数や運用面を考慮したデザインシステムの構築を得意分野として活動した。",
-    logoSrc: undefined as string | undefined,
+    logoSrc: "/images/home/career/hakuhodo-i-studio.png",
     logoFallback: "hakuhodo" as const,
   },
 ];
-
-function CareerLogoFallback({ type }: { type: "accenture" | "hakuhodo" }) {
-  if (type === "accenture") {
-    return (
-      <span className="font-en text-lg font-bold tracking-tight text-white sm:text-xl">
-        &gt; Accenture
-      </span>
-    );
-  }
-  return (
-    <span className="text-center font-en text-sm font-bold leading-tight text-white sm:text-base">
-      HAKUHODO
-      <br />
-      <span className="text-xs font-normal">I-STUDIO</span>
-    </span>
-  );
-}
-
-function CareerLogoSlot({
-  logoSrc,
-  logoFallback,
-}: {
-  logoSrc?: string;
-  logoFallback?: "accenture" | "hakuhodo";
-}) {
-  return (
-    <div className="flex h-[72px] w-[200px] shrink-0 items-center justify-center p-3 sm:h-[80px] sm:w-[220px]">
-      {logoSrc ? (
-        <Image
-          src={logoSrc}
-          alt=""
-          width={200}
-          height={72}
-          className="max-h-14 w-full object-contain brightness-0 invert"
-        />
-      ) : logoFallback ? (
-        <CareerLogoFallback type={logoFallback} />
-      ) : null}
-    </div>
-  );
-}
 
 export function CareerSection() {
   return (
@@ -97,9 +63,7 @@ export function CareerSection() {
                   </div>
                   <CareerLogoSlot
                     logoSrc={e.logoSrc}
-                    logoFallback={
-                      "logoFallback" in e ? e.logoFallback : undefined
-                    }
+                    logoFallback={e.logoFallback}
                   />
                   <div className="flex max-w-[400px] flex-col gap-4">
                     <h3 className="whitespace-pre-line text-xl font-bold leading-snug">

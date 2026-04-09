@@ -277,55 +277,58 @@ const SCRAMBERRY_WALLET_DETAIL: WorkDetailConfig = {
 
 const MY_AU_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "My auの\n**未来の顧客体験を**\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      '1,050万MAUを誇るauブランドの公式アプリ。"My au"の未来の顧客体験をデザインするために、サービスデザインからUIUXデザインまでを一貫して支援。',
+    date: "2019.2 - 2021.8",
+    tags: ["APP", "DesignSprints", "DesignAwards"],
+    roles: ["UIUX Design", "Service Design", "Information Architect"],
     mediaFile: "kddi.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "quoteTwoLeft",
-      eyebrow: "Achievement",
-      title: "「 two」テンプレート",
-      body: "左に 520x600 メディア、右に 792 幅のテキストを配置する構成。",
+      eyebrow: "Background",
+      title: "人々の生活をシームレスにつなぐ\nMy auの挑戦",
+      body:
+        "auは遠く離れた場所を回線でつなぐだけではなく、人々の命を、暮らしを、心をつないでいる。その中でMy auは「auサービス窓口」として、お客さまが目的を迷わず完結できるよう日常的につなぐことが求められた。オンラインでの操作に不安を覚えられる方や、コロナ禍で来店が制限された方など、幅広い層のお客さまが直感的に目的を完結でき、自然な気づきにより必要な情報を得られるようなUIUX設計をお客さま起点で行い、アプリ体験を刷新した。",
       mediaFile: "kddi.mp4",
     },
     {
       sectionNumber: 2,
       type: "quoteTwoRight",
-      eyebrow: "Achievement",
-      title: "』two テンプレート",
-      body: "「two」の左右反転版。上部ストリップと本文の順序も反転。",
+      eyebrow: "Process",
+      title: "自分たちだけでは考えない\n本当の顧客視点をプロセスに導入",
+      body:
+        "全プロセスで「顧客との対話」を貫徹。まず始めに既存顧客の日常生活のニーズやペインを理解し「お客さまに主導権を戻す」という明確なビジョンを描いた。その後の制作プロセスでは18~65歳の70名以上のユーザーにプロトタイプテストを実施。デザイナー・エンジニア・事業担当で共創チームを立ち上げ、新機能のコンセプトからUIUXまでデザインスプリントを高速回転、ユーザーの声を聞きながら仮説の検証・改善を繰り返した。",
       mediaFile: "kddi.mp4",
     },
     {
       sectionNumber: 3,
       type: "mediaTextTwoCol",
       eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      title: "2週間単位の\nデザインスプリントを\n11回実施",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "auユーザーが最も利用する「契約プランを確認する」「毎月の支払額・請求予定額を確認する」などのアプリ上の体験をリサーチを元に再定義。定義後2週間で体験設計・情報設計・プロトタイプ制作・ユーザーテストを全て行うデザインスプリントを設計し、それを1年半掛けて11回実施。70名以上のインタビューを行った。",
       mediaFile: "kddi.mp4",
     },
     {
       sectionNumber: 4,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Achievement",
+      title: "デザインアプローチが評価され、\nGood Design賞を受賞",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "KDDI社内にデザイン文化を醸成したデザインアプローチが評価され、Good Design賞を受賞。利用率の向上、オンラインストアの売上増加だけではなく、KDDI社内にデザイン文化が醸成され、現在はKDDI社員メンバーがデザイン思考に基づいたワークショップ設計を実施するまでとなった。またMy auで作成したガイドラインはデザインシステムとして社内展開を予定しており、今後はMy auだけでなく他プロダクトでも一貫した体験を提供予定。",
       mediaFile: "kddi.mp4",
     },
     {
       sectionNumber: 5,
       type: "doubleBarTwo",
       eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      title: "クライアントへの\nデザイン文化の醸成",
+      body:
+        "ファシリテーター・ユーザーテスト設計・プロトタイプ制作などチーム編成によって私の役割は流動的に変化し、臨機応変に幅広く活動。クライアントとの共創を積極的に行い、2020年にはクライアントへのデザイン文化構築が評価され、Accenture Interactive(元Accenture Song)社内1,000人以上の中から最も優れた活躍をした５名に選出された。",
       mediaFile: "kddi.mp4",
     },
   ],
@@ -333,39 +336,41 @@ const MY_AU_DETAIL: WorkDetailConfig = {
 
 const PLAYADS_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**探求心を**\n**根付かせる体験を**\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "国内3,000万人/全世界5,500万人と連携し、CM動画を公開前にユーザー検証が行えるWEBサービス。情報設計・UIUXなどのデザイン全体を支援。",
+    date: "2021.5 - Now",
+    tags: ["Research", "WebService", "DesignOnboarding"],
+    roles: ["UIUX Design", "Information Architect"],
     mediaFile: "playads.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "About Service",
+      title:
+        "データ主導のCM動画制作を牽引し、\nレガシーな制作工程に変革をもたらす\nWEBサービス",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "今まで制作側の感覚値で制作されていたCM動画を数値でユーザーの反応を算出し、スムーズで的確な改善・それに伴うコスト削減・公開後の炎上回避を実現。CM動画のレガシーな制作工程に変革をもたらすサービスを展開している。",
       mediaFile: "playads.mp4",
     },
     {
       sectionNumber: 4,
       type: "lineOne",
-      eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      eyebrow: "Design Concept",
+      title: "“探究への導き”がもたらす効果的な\nユーザーエクスペリエンス",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "社員へのヒアリングをワークショップ形式で実施、また旧画面のエキスパートレビューを通じて、新たなUIUXコンセプトである\"探究への導き\"を策定。情報設計とUI設計を担当し、多層的で複雑な情報を専門家でなくとも誰でもわかる形に整理。認知負荷を最小限に抑えつつ、ユーザーにとって必要な情報へのアクセスがよりスムーズになるよう設計を行った。",
       mediaFile: "playads.mp4",
     },
     {
       sectionNumber: 5,
       type: "quoteTwoLeft",
-      eyebrow: "Achievement",
-      title: "「 two」テンプレート",
-      body: "左に 520x600 メディア、右に 792 幅のテキストを配置する構成。",
+      eyebrow: "Result",
+      title: "売上向上にも繋がった\nデザインリニューアル",
+      body:
+        "新しいデザインコンセプトの元に情報設計・UI設計を行ったことで、認知負荷が劇的に削減され、ユーザーは迅速かつ効果的に情報にアクセスできるようになり、倍以上の売上向上に繋がった。\"探究への導き\"の理念に基づくUI設計は、ユーザーが深掘りしたい情報を見つける手助けとなり、全体的な使いやすさを向上させた。現在も運用・大型アップデートなどに関する継続的なサポートを提供している。",
       mediaFile: "playads.mp4",
     },
   ],
@@ -374,39 +379,40 @@ const PLAYADS_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §7 → §4 → §3 と同じレイアウト順 */
 const HONDA_DESIGN_SYSTEM_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**アプリの品質を**\n**上げる仕組み**を\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "Hondaが公開しているアプリ、または今後公開するアプリの品質担保を図るためにユーザビリティ・アクセシビリティを考慮したデザインシステムを構築。デザイン設計に関するルールやツールをまとめて体系化。",
+    date: "2021.9 - 2021.12",
+    tags: ["Usability", "Guideline", "DesignSystem"],
+    roles: ["UIUX Design", "Service Design"],
     mediaFile: "honda.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Mission",
+      title: "Hondaが提供する\n全アプリの品質を\n向上させる",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "Hondaが提供するアプリは各部署・各国が独自に開発をしており、アクセシビリティ・ユーザビリティが担保されていない状態で公開されていた。そのためほとんどのアプリの評価は低く、ブランドとしての価値を落としている可能性があったためデザインシステムを導入し、一定の品質担保を提供する仕組みをデザインした。",
       mediaFile: "honda.mp4",
     },
     {
       sectionNumber: 2,
       type: "lineOne",
       eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      title: "長期的な運用を促す\nデザインシステムを\n構築するためのアプローチ",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "デザインシステムの考え方の普及、アプローチ設計、インタビュー設計、コンポーネントガイドラインの制作を実行。長期的に育てていくデザインシステムの第一歩として品質を守るための最低限のルールを定めたアクセシビリティや各デザインコンポーネントの使い方を設計した。",
       mediaFile: "honda.mp4",
     },
     {
       sectionNumber: 3,
       type: "doubleBarTwo",
-      eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      eyebrow: "Result",
+      title: "Honda内部にデザイン\nシステムが浸透し、\n継続して改善・運用",
+      body:
+        "デザイン開発の指針を定め、開発の効率化、品質の一元化を実現。長期的に一貫した顧客体験を提供するために現在もHondaチームが改善・運用を進め、アプリ開発に役立てている。",
       mediaFile: "honda.mp4",
     },
   ],
@@ -415,39 +421,40 @@ const HONDA_DESIGN_SYSTEM_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §3 → §6 → §4 と同じレイアウト順 */
 const PEER_WORKER_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**GenAIとの**\n**新たな働き方を**\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "社員が書いたプロンプトを社内に共有・活用できるプラットフォームサービス。PEER WORKERがユーザーの「第２の脳」「第３の手」となり、日常業務に欠かせない体験を構築。",
+    date: "2023.4 - 2023.7",
+    tags: ["GenAI", "WebService", "PromptPlatform"],
+    roles: ["UIUX Design", "Service Design", "Information Architect"],
     mediaFile: "peerworker.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "doubleBarTwo",
-      eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      eyebrow: "Design Approach",
+      title: "AIが社内の独自データを学び、\n業務の効率を高めた\n社内クラウドの体験構築",
+      body:
+        "社外秘が格納されているクラウドにもアクセスし、無数に存在する提案書やレポートをAIが学習する。それを行うことで今まで事例収集やリサーチに費やしていた時間は軽減。プロジェクトの引き継ぎや業界理解などのインプットはPEER WORKERと会話をすることで、人員を費やすことなく可能になった。",
       mediaFile: "peerworker.mp4",
     },
     {
       sectionNumber: 2,
       type: "mediaTextTwoCol",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "UX Principle",
+      title: "ユーザーの目的に\n応じた３つの\n体験定義",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "ユーザーアクションを「探す」「使う」「作る」の三つに分類し、三つそれぞれの体験ゴールを定義した上で、情報設計を行い、最短アクションでユーザーの目的が達成できるように設計した。",
       mediaFile: "peerworker.mp4",
     },
     {
       sectionNumber: 3,
       type: "lineOne",
-      eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      eyebrow: "My Role",
+      title: "米国アクセンチュア本社を動かした\nアウトプット",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "デザインアプローチ計画、体験設計、情報設計、ビジュアル設計、UI設計を現場リーダーとして手を動かしながらディレクションを行なった。プロジェクトが認められ、アメリカアクセンチュア本社社長配下のプロジェクトになった。",
       mediaFile: "peerworker.mp4",
     },
   ],
@@ -456,40 +463,40 @@ const PEER_WORKER_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §7 → §6 → §4 と同じレイアウト順 */
 const YUCHO_PAY_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**ゆうちょ銀行**\n**ならではの安心**を\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "ゆうちょ銀行が公開しているペイメントアプリ。短い期間でデザインスプリントを設計し、体験設計・情報設計・プロトタイプ制作・ユーザーテスト(20名)を実施し、デザインを支援。",
+    date: "2019.12 - 2020.2",
+    tags: ["App", "Payment", "DesignSprints"],
+    roles: ["UIUX Design", "Service Design", "Information Architect"],
     mediaFile: "yucho.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Experience",
+      title: "瞬時の引き落としと\n口座残高の見える化で\n安心感のある利用体験",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "ゆうちょ銀行口座と連携することで事前チャージの必要なく、即時引き落としが可能。ご利用上限金額設定ができるため使いすぎることなく、コントロールできる。またワンタップで口座残高が確認できるため支払い時も安心して使用できる。",
       mediaFile: "yucho.mp4",
     },
     {
       sectionNumber: 2,
       type: "mediaTextTwoCol",
       eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      title: "2ヶ月で4回の\nDesign Sprintを実施し\n20人の声を即時反映",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "1週間で体験設計・情報設計・プロトタイプ制作・ユーザーテストを全て行うデザインスプリントを設計し、それを2ヶ月で４回実施。スプリントでは主に体験フロー設計、プロトタイプ制作、インタビュー実施を行い、スピーディーかつ短期間で20人の声を拾い上げ、体験やUIデザインに反映した。",
       mediaFile: "yucho.mp4",
     },
     {
       sectionNumber: 3,
       type: "lineOne",
-      eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      eyebrow: "Result",
+      title: "Accenture初のデザインスプリント",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "Accenture Interactive(現Accenture Song)では初のデザインスプリントを実施し、それを参考に数々のプロジェクトがデザインスプリントのアプローチを実践した。",
       mediaFile: "yucho.mp4",
     },
   ],
@@ -498,38 +505,40 @@ const YUCHO_PAY_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §3 → §2 → §7 と同じレイアウト順 */
 const PLOOM_TECH_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**Ploomブランドの**\n**ロイヤリティを**\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "JTのPloom TECHは数多くのデジタルコミュニケーションを行っている。”Ploomブランドサイト”、Ploomの会員限定サービス”Ploom Owner's club”や各国の柄をテーマにした”Ploom TECH Cross The Border”などのPloom関連のUIデザインを支援。",
+    date: "2018.3 - 2019.1",
+    tags: ["Web", "Loyalty", "DigitalCommunication"],
+    roles: ["UI Design"],
     mediaFile: "jt.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "doubleBarTwo",
-      eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      eyebrow: "Ploom Brand Site",
+      title: "生活に溶け込んだ\nPloom TECH",
+      body:
+        "Ploom TECHの利用者はもちろん、未利用者に対しても横串でWEBサイトを展開している。Ploom TECHが持つプロダクトの洗練さ、人々の生活の中に溶け込みやすいデザインをPloomブランドサイトでは表現し、未利用者でも入り込みやすいデザインで制作。",
       mediaFile: "jt.mp4",
     },
     {
       sectionNumber: 2,
       type: "quoteTwoRight",
-      eyebrow: "Achievement",
-      title: "』two テンプレート",
-      body: "「two」の左右反転版。上部ストリップと本文の順序も反転。",
+      eyebrow: "Cross The Border",
+      title: "各国の都市を想起する\nPloom TECH",
+      body:
+        "各国の都市を柄にして販売したPloom TECH Cross The Borderのスペシャルサイト。生活に溶け込むノーマルなPloom TECHとは違い、殻に閉じ込まず、世界を横断する人を後押しする製品コンセプトをUIで表現。各国の柄やフォントを大胆にレイアウトし、グリッドにハマらないデザインで制作。",
       mediaFile: "jt.mp4",
     },
     {
       sectionNumber: 3,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Ploom Owner's club",
+      title: "利用者のロイヤリティを高め、\n日々の利用に優越感を与えるデザイン",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "Ploom TECH利用者限定の会員サイト。ロイヤリティプログラムを採用しているため特別感を醸成していくために3Dのゴールドコインや実際にスタンプを作成したものをデザインに入れ、平面の中にリアルな高級感を感じる表現になるように制作。",
       mediaFile: "jt.mp4",
     },
   ],
@@ -538,30 +547,31 @@ const PLOOM_TECH_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §3 → §6 と同じレイアウト順 */
 const NISSAN_GT_R_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**GT-Rの**\n**細かなギミックを**\nUIに吹き込む",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "日産GT-Rのコアファンに向けたスペシャルサイト。UIデザイナーとして参画。GT-Rが「組み上がるまでの工場内」と「テスト走行を繰り返して走りを磨き上げる」２つの顔をサイト全体で表現した。",
+    date: "2016.9 - 2016.12",
+    tags: ["Web", "GT-R", "UIGimmick"],
+    roles: ["UI Design"],
     mediaFile: "nissan.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "doubleBarTwo",
-      eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      eyebrow: "Design Direction",
+      title: "GT-R独自の製法と共に\nGT-Rならではの\nUIギミックで楽しむ\nデザイン",
+      body:
+        "GT-Rのエンジンは手作りで製作されており、日本でたった５人しか製法を知らない。エンジンを組み上げた後、栃木工場内のテストコースで加速とブレーキを繰り返し、ブレーキを焼きながら磨き上げる工程を経てGT-Rはお客様の手に渡っている。その工程をGT-Rならではの細かなギミックUIと共に楽しめるようにデザインした。",
       mediaFile: "nissan.mp4",
     },
     {
       sectionNumber: 2,
       type: "mediaTextTwoCol",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "UI Design",
+      title: "GT-Rファンなら\nわかるUIデザイン",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "GT-Rアローやリアライトページャーなどを開発。こあくまでUIのディテールの一部だが、GT-Rファンならば発見・高揚できるようにデザイン。その微細なUIに込めた情熱とこだわりが、GT-Rを特別な存在へと昇華するようにデザイン。",
       mediaFile: "nissan.mp4",
     },
   ],
@@ -570,39 +580,40 @@ const NISSAN_GT_R_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §5 → §4 → §6 と同じレイアウト順 */
 const KUME_SEKKEI_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**ルーツから紐解く**\n**建築ストーリーを**\nデザインする",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "久米設計のコーポレートサイトリニューアル。設計会社というジャンルの枠を超え、生活や街をより豊かにするために、建築(モノ)という目に見えるものから目に見えない人々の体験(コト)や空間をデザインしている集団であることを伝えていくためのUXを支援。",
+    date: "2018.8 - 2018.12",
+    tags: ["LifeStory", "CorporateSite", "ArchitecturalNarrative"],
+    roles: ["Service Design", "Information Architect"],
     mediaFile: "kume.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "quoteTwoLeft",
-      eyebrow: "Achievement",
-      title: "「 two」テンプレート",
-      body: "左に 520x600 メディア、右に 792 幅のテキストを配置する構成。",
+      eyebrow: "Design Approach",
+      title: "クライアントと協業し、\n承認スピードを上げたワークショップ設計",
+      body:
+        "サイトの基本方針を決めるためのワークショップの実施と設計・コンセプトメイキング・情報設計を担当。ワークショップでは社長を含めたステークホルダーが社内で大切にしていることをBull's-eye DiagrammingやWhat's on Your Radar?などのメソッドで明らかにし、バラバラだった意識を可視化した。その後Concept PosterやRound Robinで久米設計が大切にしていることをどのように表現すれば伝わるのかをクライアントともにワークショップ内で考え、コンセプトメイキングまで行った。",
       mediaFile: "kume.mp4",
     },
     {
       sectionNumber: 2,
       type: "lineOne",
-      eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      eyebrow: "Site Story",
+      title: "久米設計のルーツが織りなす\n建築ストーリー",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "久米設計は都市面開発、耐震・防災技術、ホスピタリティの３つのルーツを創業者から引き継いでいる。その大事にしてきたルーツが色濃く反映された事例を例にとって、実際に建物が出来上がり人々の生活に馴染むまでの物語を表現。",
       mediaFile: "kume.mp4",
     },
     {
       sectionNumber: 3,
       type: "mediaTextTwoCol",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Achievement",
+      title: "営業ツールとなった\nコーポレートサイト",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "今までほとんどアクセスがなかったコーポレートサイトからのお問い合わせ件数が増え、営業ツールとしてもコーポレートサイトが役立てられている。",
       mediaFile: "kume.mp4",
     },
   ],
@@ -611,39 +622,40 @@ const KUME_SEKKEI_DETAIL: WorkDetailConfig = {
 /** セカンドビュー以降: templates §4 → §3 → §7 と同じレイアウト順 */
 const ATOM_INTERACTION_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "課題を解き、\n体験価値を\n最大化する",
+    headline: "**マイクロ**\n**インタラクション**\nを科学する",
     summary:
-      "この作品の詳細は順次実装予定です。\nファーストビューは共通レイアウトで統一し、\nセカンドビュー以降はテンプレートを指定して\n作品ごとに柔軟に構築していきます。",
-    date: "2024.1 - 2025.12",
-    tags: ["APP"],
-    roles: ["UIUX Design"],
+      "“マイクロインタラクションには、ユーザーの目的と行動によって一定のパターンが存在するのではないか？”という仮説を元に、個々の感性でデザインされているインタラクションを言語化。ある一定の性質を発見することで、デザイナーとノンデザイナーが同じ視点でデザインできる世界を目指したルールブック。",
+    date: "2022.8 - 2023.9",
+    tags: ["TouchGesture", "MicroInteraction", "ForNonDesigner"],
+    roles: ["UIUX Design", "Service Design"],
     mediaFile: "atom.mp4",
   },
   blocks: [
     {
       sectionNumber: 1,
       type: "lineOne",
-      eyebrow: "Design Approach",
-      title: "2週間単位のデザインスプリントを11回実施",
+      eyebrow: "About",
+      title: "デザイナーの感覚で作られている\nインタラクションを言語化",
       body:
-        "アプリ内の「料金プランの確認」などの体験をリサーチから再定義し、1年半かけて計11回の2週間単位のデザインスプリントを実施。延べ73名へのインタビューを通じて、利用動機と行動の変化を可視化しながら改善を進めました。",
+        "インタラクションをObject / Trigger / Response / Purposeの４要素に分解し、23種類のタッチジェスチャーで生じるインタラクションを言語化・ルール化した。",
       mediaFile: "atom.mp4",
     },
     {
       sectionNumber: 2,
       type: "doubleBarTwo",
-      eyebrow: "My Role",
-      title: "｜｜two テンプレート",
-      body: "左右 420 相当のメディアに中央テキストを置くタイプ。",
+      eyebrow: "Design Approach",
+      title: "世の中の\nインタラクションを\n収集し表現の中に\n隠されたルールを抽出",
+      body:
+        "チームリーダーとして企画・進行・デザインを担当。世の中に無数に存在するインタラクション事例を網羅的に洗い出すための足掛かりとして、タッチジェスチャーを中心にインタラクション事例を収集。インタラクションとユーザーの目的を紐付けて事例を分類し、４要素から各インタラクションの特性を抽出。基本的なインタラクションルールとモデルアニメーションを作成した。",
       mediaFile: "atom.mp4",
     },
     {
       sectionNumber: 3,
       type: "imageLeftTextRight",
-      eyebrow: "Design Approach",
-      title: "貯蓄体験を継続させるUIを再設計",
+      eyebrow: "Future Activities",
+      title: "Figmaのイベントや\n千葉大学での講義に活用",
       body:
-        "日々の入出金導線を極力シンプルにしながら、利用動機を維持するフィードバックを画面内に配置。KPI とユーザー心理の両面で継続を設計しました。",
+        "Figmaの大規模なイベントに登壇、また千葉大学にインタラクションの知識を広めるために活用している。",
       mediaFile: "atom.mp4",
     },
   ],

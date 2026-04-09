@@ -46,11 +46,13 @@ function SectionText({
 }) {
   return (
     <div className="flex max-w-[792px] flex-col gap-6">
-      <p className="font-en text-xl font-normal leading-[1.4] text-[#242424]">{eyebrow}</p>
-      <h3 className="whitespace-pre-line text-[clamp(2rem,3.3vw,2.5rem)] font-light leading-[1.4] text-[#242424]">
+      <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
+        {eyebrow}
+      </p>
+      <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
         {title}
       </h3>
-      <p className="text-base font-light leading-[1.6] text-[#242424]">{body}</p>
+      <p className="text-base font-light leading-[1.8em] text-[#242424]">{body}</p>
     </div>
   );
 }
@@ -58,8 +60,10 @@ function SectionText({
 function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "mediaTextTwoCol" }> }) {
   const titleCol = (
     <div className="flex min-w-0 flex-col gap-6">
-      <p className="font-en text-xl font-normal leading-[1.4] text-[#242424]">{block.eyebrow}</p>
-      <h3 className="whitespace-pre-line text-[clamp(2rem,3.3vw,2.5rem)] font-light leading-[1.4] text-[#242424]">
+      <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
+        {block.eyebrow}
+      </p>
+      <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
         {block.title}
       </h3>
     </div>
@@ -86,7 +90,7 @@ function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "m
           block.reverse ? "order-1 lg:order-1" : "order-3 lg:order-3"
         }`}
       >
-        <p className="text-base font-light leading-[1.6] text-[#242424]">{block.body}</p>
+        <p className="text-base font-light leading-[1.8em] text-[#242424]">{block.body}</p>
       </div>
     </section>
   );
@@ -289,12 +293,14 @@ function TemplateVariant({
         </div>
         <div className="mt-10 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-center lg:gap-x-12">
           <div className="flex min-w-0 flex-col gap-6 lg:flex-1">
-            <p className="font-en text-xl font-normal leading-[1.4] text-[#242424]">{block.eyebrow}</p>
-            <h3 className="whitespace-pre-line text-[clamp(2rem,3.3vw,2.5rem)] font-light leading-[1.4] text-[#242424]">
+            <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
+              {block.eyebrow}
+            </p>
+            <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
               {block.title}
             </h3>
           </div>
-          <p className="min-w-0 text-base font-light leading-[1.6] text-[#242424] lg:flex-1">{block.body}</p>
+          <p className="min-w-0 text-base font-light leading-[1.8em] text-[#242424] lg:flex-1">{block.body}</p>
         </div>
       </section>
     );

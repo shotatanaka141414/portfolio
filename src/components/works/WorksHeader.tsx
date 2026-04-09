@@ -28,9 +28,9 @@ export function WorksHeader() {
           <Link href="/" className={navReg}>
             ABOUT ME
           </Link>
-          <span className={navBold} aria-current="page">
+          <Link href="/works" className={navBold} aria-current="page">
             WORKS
-          </span>
+          </Link>
         </nav>
       </div>
     </header>

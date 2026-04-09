@@ -162,6 +162,25 @@ export function WorkDetailHero({
             <WorkDetailHeroMedia file={hero.mediaFile ?? work.videoFile} />
           </div>
 
+          {work.awards?.length ? (
+            <div className="pointer-events-none absolute right-3 top-[-12px] z-10 flex flex-col items-end gap-1 sm:right-4 sm:top-[-8px] md:gap-1">
+              {work.awards.includes("gooddesign") && (
+                <img
+                  src="/images/works/award-gooddesign.png"
+                  alt="Good Design Award"
+                  className="h-[72px] w-[72px] sm:h-[100px] sm:w-[100px] md:h-[123px] md:w-[123px]"
+                />
+              )}
+              {work.awards.includes("reddot") && (
+                <img
+                  src="/images/works/award-reddot.png"
+                  alt="Red Dot Award"
+                  className="h-[64px] w-[64px] sm:h-[88px] sm:w-[88px] md:h-[110px] md:w-[110px]"
+                />
+              )}
+            </div>
+          ) : null}
+
           <div className="absolute left-0 top-0 bg-white px-4 py-2 text-sm font-normal leading-6 text-[#242424]">
             {hero.date}
           </div>

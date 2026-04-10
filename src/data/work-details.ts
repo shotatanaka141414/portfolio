@@ -22,6 +22,7 @@ export type WorkDetailBlock =
       title: string;
       body: string;
       mediaFile?: string;
+      mediaFiles?: string[];
       reverse?: boolean;
     }
   | {
@@ -31,6 +32,7 @@ export type WorkDetailBlock =
       title: string;
       body: string;
       mediaFile?: string;
+      mediaFiles?: string[];
       /** true のとき右にメディア・左にテキスト（モバイルはテキスト上） */
       reverse?: boolean;
     }
@@ -41,6 +43,7 @@ export type WorkDetailBlock =
       title: string;
       body: string;
       mediaFile?: string;
+      mediaFiles?: string[];
       align?: "left" | "right";
     }
   | {
@@ -66,6 +69,7 @@ export type WorkDetailBlock =
       title: string;
       body: string;
       mediaFile?: string;
+      mediaFiles?: string[];
       align?: "left" | "right";
     };
 
@@ -77,6 +81,237 @@ export type WorkDetailConfig = {
 /** 表示用セクション番号（ラベル・DOM id 用）。レイアウト種別とは無関係。 */
 export function resolveWorkDetailSectionNumber(block: WorkDetailBlock, index: number): number {
   return block.sectionNumber ?? index + 1;
+}
+
+/**
+ * セカンドビュー以降のメディアは作品ごと・セクションごとに別ファイルを割り当てる。
+ * 実ファイル格納先:
+ * - /public/videos/works/detail
+ * - /public/images/works/detail
+ *
+ * 例: slug が "yucho-pay" の場合
+ * - yucho-pay-detail-01.mp4
+ * - yucho-pay-detail-02.mp4
+ */
+function withPerSectionDetailMedia(slug: string, blocks: WorkDetailBlock[]): WorkDetailBlock[] {
+  if (slug === "idare") {
+    const idareMediaByBlock = [
+      ["images/detail/IDARE/idare-01.png", "images/detail/IDARE/idare-02.png"],
+      ["images/detail/IDARE/idare-03.png", "images/detail/IDARE/idare-04.png"],
+      ["images/detail/IDARE/idare-05.png", "images/detail/IDARE/idare-06.png"],
+      ["images/detail/IDARE/idare-07.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = idareMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "shikazika") {
+    const shikazikaMediaByBlock = [
+      ["images/detail/SHIKAZIKA/shikazika-01.png"],
+      ["images/detail/SHIKAZIKA/shikazika-02.png"],
+      ["images/detail/SHIKAZIKA/shikazika-03.png", "images/detail/SHIKAZIKA/shikazika-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = shikazikaMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "my-au") {
+    const myAuMediaByBlock = [
+      ["images/detail/My au/myau-01.png", "images/detail/My au/myau-02.png"],
+      ["images/detail/My au/myau-03.png", "images/detail/My au/myau-04.png"],
+      ["images/detail/My au/myau-05.png"],
+      ["images/detail/My au/myau-06.png"],
+      ["images/detail/My au/myau-07.png", "images/detail/My au/myau-08.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = myAuMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "scramberry-wallet") {
+    const scramberryMediaByBlock = [
+      ["images/detail/scramberry WALLET/scramberry-01.mov"],
+      [
+        "images/detail/scramberry WALLET/scramberry-02.mov",
+        "images/detail/scramberry WALLET/scramberry-03.png",
+      ],
+      ["images/detail/scramberry WALLET/scramberry-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = scramberryMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "ja-kyosai-app") {
+    const jaMediaByBlock = [
+      ["images/detail/JA/JAkyousai-01.png", "images/detail/JA/JAkyousai-02.png"],
+      ["images/detail/JA/JAkyousai-03.png", "images/detail/JA/JAkyousai-04.png"],
+      ["images/detail/JA/JAkyousai-05.png"],
+      ["images/detail/JA/JAkyousai-06.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = jaMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "playads") {
+    const playadsMediaByBlock = [
+      ["images/detail/PlayAds/playads-01.png"],
+      ["images/detail/PlayAds/playads-02.png"],
+      ["images/detail/PlayAds/playads-03.png", "images/detail/PlayAds/playads-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = playadsMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "honda-design-system") {
+    const hondaMediaByBlock = [
+      ["images/detail/Honda Design System/honda-01.png"],
+      ["images/detail/Honda Design System/honda-02.png"],
+      ["images/detail/Honda Design System/honda-03.png", "images/detail/Honda Design System/honda-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = hondaMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "peer-worker") {
+    const peerMediaByBlock = [
+      ["images/detail/peerworker/peerworker-01.png", "images/detail/peerworker/peerworker-02.png"],
+      ["images/detail/peerworker/peerworker-03.png"],
+      ["images/detail/peerworker/peerworker-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = peerMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "yucho-pay") {
+    const yuchoMediaByBlock = [
+      ["images/detail/yucho/yucho-01.png"],
+      ["images/detail/yucho/yucho-02.png"],
+      ["images/detail/yucho/yucho-03.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = yuchoMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "ploom-tech") {
+    const ploomMediaByBlock = [
+      ["images/detail/ploomtech/ploomtech-01.png", "images/detail/ploomtech/ploomtech-02.png"],
+      ["images/detail/ploomtech/ploomtech-03.png", "images/detail/ploomtech/ploomtech-04.png"],
+      ["images/detail/ploomtech/ploomtech-05.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = ploomMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "nissan-gt-r") {
+    const nissanMediaByBlock = [
+      ["images/detail/Nissan GT-R/nissangtr-01.png", "images/detail/Nissan GT-R/nissangtr-02.png"],
+      ["images/detail/Nissan GT-R/nissangtr-03.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = nissanMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "kume-sekkei") {
+    const kumeMediaByBlock = [
+      ["images/detail/kume-sekkei/kumesekkei-01.png", "images/detail/kume-sekkei/kumesekkei-02.png"],
+      ["images/detail/kume-sekkei/kumesekkei-03.png"],
+      ["images/detail/kume-sekkei/kumesekkei-04.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = kumeMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "atom-interaction") {
+    const atomMediaByBlock = [
+      ["images/detail/atom/atom-01.png"],
+      ["images/detail/atom/atom-02.mov", "images/detail/atom/atom-03.mov"],
+      ["images/detail/atom/atom-04.mov"],
+    ];
+    return blocks.map((block, index) => {
+      const files = atomMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  return blocks.map((block, index) => ({
+    ...block,
+    mediaFile: `${slug}-detail-${String(index + 1).padStart(2, "0")}.mp4`,
+  }));
 }
 
 const DEFAULT_BLOCKS: WorkDetailBlock[] = [
@@ -651,7 +886,7 @@ const ATOM_INTERACTION_DETAIL: WorkDetailConfig = {
     },
     {
       sectionNumber: 3,
-      type: "imageLeftTextRight",
+      type: "lineOne",
       eyebrow: "Future Activities",
       title: "Figmaのイベントや\n千葉大学での講義に活用",
       body:
@@ -662,21 +897,22 @@ const ATOM_INTERACTION_DETAIL: WorkDetailConfig = {
 };
 
 export function getWorkDetailConfig(slug: string): WorkDetailConfig {
-  if (slug === "idare") return IDARE_DETAIL;
-  if (slug === "shikazika") return SHIKAZIKA_DETAIL;
-  if (slug === "ja-kyosai-app") return JA_KYOSAI_APP_DETAIL;
-  if (slug === "scramberry-wallet") return SCRAMBERRY_WALLET_DETAIL;
-  if (slug === "my-au") return MY_AU_DETAIL;
-  if (slug === "playads") return PLAYADS_DETAIL;
-  if (slug === "honda-design-system") return HONDA_DESIGN_SYSTEM_DETAIL;
-  if (slug === "peer-worker") return PEER_WORKER_DETAIL;
-  if (slug === "yucho-pay") return YUCHO_PAY_DETAIL;
-  if (slug === "ploom-tech") return PLOOM_TECH_DETAIL;
-  if (slug === "nissan-gt-r") return NISSAN_GT_R_DETAIL;
-  if (slug === "kume-sekkei") return KUME_SEKKEI_DETAIL;
-  if (slug === "atom-interaction") return ATOM_INTERACTION_DETAIL;
-
-  return {
+  let base: WorkDetailConfig;
+  if (slug === "idare") base = IDARE_DETAIL;
+  else if (slug === "shikazika") base = SHIKAZIKA_DETAIL;
+  else if (slug === "ja-kyosai-app") base = JA_KYOSAI_APP_DETAIL;
+  else if (slug === "scramberry-wallet") base = SCRAMBERRY_WALLET_DETAIL;
+  else if (slug === "my-au") base = MY_AU_DETAIL;
+  else if (slug === "playads") base = PLAYADS_DETAIL;
+  else if (slug === "honda-design-system") base = HONDA_DESIGN_SYSTEM_DETAIL;
+  else if (slug === "peer-worker") base = PEER_WORKER_DETAIL;
+  else if (slug === "yucho-pay") base = YUCHO_PAY_DETAIL;
+  else if (slug === "ploom-tech") base = PLOOM_TECH_DETAIL;
+  else if (slug === "nissan-gt-r") base = NISSAN_GT_R_DETAIL;
+  else if (slug === "kume-sekkei") base = KUME_SEKKEI_DETAIL;
+  else if (slug === "atom-interaction") base = ATOM_INTERACTION_DETAIL;
+  else
+    base = {
     hero: {
       headline: "課題を解き、\n体験価値を\n最大化する",
       summary:
@@ -686,5 +922,10 @@ export function getWorkDetailConfig(slug: string): WorkDetailConfig {
       roles: ["UIUX Design"],
     },
     blocks: DEFAULT_BLOCKS,
+  };
+
+  return {
+    ...base,
+    blocks: withPerSectionDetailMedia(slug, base.blocks),
   };
 }

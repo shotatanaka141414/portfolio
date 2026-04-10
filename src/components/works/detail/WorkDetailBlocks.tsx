@@ -5,6 +5,23 @@ import { resolveWorkDetailSectionNumber } from "@/data/work-details";
 
 import { WorkDetailHeroMedia } from "./WorkDetailHeroMedia";
 
+function getMediaFile(block: WorkDetailBlock, slot = 0): string | undefined {
+  const withMediaFiles = block as WorkDetailBlock & { mediaFiles?: string[]; mediaFile?: string };
+  return withMediaFiles.mediaFiles?.[slot] ?? withMediaFiles.mediaFile;
+}
+
+/** Nissan GT-R 詳細のみ: 横幅は維持しつつ縦を 32px 短くする（container は親幅＝カラム幅） */
+function isNissanGtrDetail916Short(file?: string) {
+  return (
+    typeof file === "string" &&
+    (file.includes("nissangtr-01.png") || file.includes("nissangtr-02.png"))
+  );
+}
+
+function isNissanGtrDetail34Short(file?: string) {
+  return typeof file === "string" && file.includes("nissangtr-03.png");
+}
+
 /** プレビュー専用: 実装コンポーネント名（本番ページでは非表示） */
 function getSectionDevTitle(block: WorkDetailBlock): string {
   if (block.type === "mediaTextTwoCol") return "MediaTextTwoCol";
@@ -69,11 +86,25 @@ function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "m
     </div>
   );
 
+  const mediaFile0 = getMediaFile(block, 0);
   const mediaCol = (
     <div className="mx-auto w-full max-w-[420px] shrink-0 overflow-hidden bg-zinc-100">
-      <div className="aspect-[3/4] w-full">
-        <WorkDetailHeroMedia file={block.mediaFile} />
-      </div>
+      {isNissanGtrDetail34Short(mediaFile0) ? (
+        <div className="relative w-full overflow-hidden bg-zinc-100">
+          <div
+            className="pointer-events-none w-full"
+            style={{ paddingBottom: "calc(100% * 4 / 3 - 32px)" }}
+            aria-hidden
+          />
+          <div className="absolute inset-0">
+            <WorkDetailHeroMedia file={mediaFile0} />
+          </div>
+        </div>
+      ) : (
+        <div className="aspect-[3/4] w-full">
+          <WorkDetailHeroMedia file={mediaFile0} />
+        </div>
+      )}
     </div>
   );
 
@@ -84,7 +115,7 @@ function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "m
       >
         {titleCol}
       </div>
-      <div className="order-2 shrink-0 lg:order-2">{mediaCol}</div>
+      <div className="order-2 w-full max-w-[420px] shrink-0 lg:order-2">{mediaCol}</div>
       <div
         className={`flex min-h-0 w-full min-w-0 flex-1 flex-col justify-end self-stretch lg:min-h-0 ${
           block.reverse ? "order-1 lg:order-1" : "order-3 lg:order-3"
@@ -101,7 +132,7 @@ function ImageLeftTextRight({ block }: { block: Extract<WorkDetailBlock, { type:
   const media = (
     <div className="w-full max-w-[600px] shrink-0 overflow-hidden bg-zinc-100">
       <div className="aspect-square w-full">
-        <WorkDetailHeroMedia file={block.mediaFile} />
+        <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
       </div>
     </div>
   );
@@ -125,7 +156,7 @@ function FullImageOverlay({ block }: { block: Extract<WorkDetailBlock, { type: "
     <section className="mx-auto w-full max-w-[1352px] py-0">
       <div className="relative overflow-hidden bg-zinc-100">
         <div className="aspect-[1352/600] w-full">
-          <WorkDetailHeroMedia file={block.mediaFile} />
+          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
         </div>
         <div
           className={`absolute bottom-8 max-w-[480px] rounded bg-white/92 p-6 ${
@@ -191,9 +222,9 @@ function TemplateVariant({
   if (block.type === "quoteTwoLeft") {
     return (
       <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:gap-10">
-        <Media520 file={block.mediaFile} />
+        <Media520 file={getMediaFile(block, 0)} />
         <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
-          <MediaStrip file={block.mediaFile} />
+          <MediaStrip file={getMediaFile(block, 1)} />
           {text}
         </div>
       </section>
@@ -205,9 +236,9 @@ function TemplateVariant({
       <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:gap-10">
         <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
           {text}
-          <MediaStrip file={block.mediaFile} />
+          <MediaStrip file={getMediaFile(block, 0)} />
         </div>
-        <Media520 file={block.mediaFile} />
+        <Media520 file={getMediaFile(block, 1)} />
       </section>
     );
   }
@@ -216,7 +247,7 @@ function TemplateVariant({
     return (
       <section className="mx-auto relative w-full max-w-[1352px] py-0">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:gap-10">
-          <Media520 file={block.mediaFile} />
+          <Media520 file={getMediaFile(block, 0)} />
           <div className="max-w-[372px]">{text}</div>
         </div>
         <div
@@ -230,18 +261,33 @@ function TemplateVariant({
   }
 
   if (block.type === "doubleBarTwo") {
-    const renderSideMedia = () => (
+    const leftFile = getMediaFile(block, 0);
+    const rightFile = getMediaFile(block, 1);
+    const renderSideMedia = (file: string | undefined) => (
       <div className="w-full max-w-[420px] overflow-hidden bg-zinc-100">
-        <div className="aspect-[9/16] w-full">
-          <WorkDetailHeroMedia file={block.mediaFile} />
-        </div>
+        {isNissanGtrDetail916Short(file) ? (
+          <div className="relative w-full overflow-hidden bg-zinc-100">
+            <div
+              className="pointer-events-none w-full"
+              style={{ paddingBottom: "calc(100% * 16 / 9 - 32px)" }}
+              aria-hidden
+            />
+            <div className="absolute inset-0">
+              <WorkDetailHeroMedia file={file} />
+            </div>
+          </div>
+        ) : (
+          <div className="aspect-[9/16] w-full">
+            <WorkDetailHeroMedia file={file} />
+          </div>
+        )}
       </div>
     );
     return (
       <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:items-end lg:gap-10">
-        {renderSideMedia()}
+        {renderSideMedia(leftFile)}
         <div className="w-full max-w-[432px]">{text}</div>
-        {renderSideMedia()}
+        {renderSideMedia(rightFile)}
       </section>
     );
   }
@@ -250,7 +296,7 @@ function TemplateVariant({
     return (
       <section className="mx-auto relative w-full max-w-[1352px] py-0">
         <div className="aspect-[1352/600] w-full overflow-hidden bg-zinc-100">
-          <WorkDetailHeroMedia file={block.mediaFile} />
+          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
         </div>
         <div className="absolute bottom-8 right-8 max-w-[432px] bg-white/92 p-6">{text}</div>
       </section>
@@ -265,7 +311,7 @@ function TemplateVariant({
           <div className="hidden lg:block" />
         </div>
         <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-12 lg:right-0 lg:mt-0">
-          <WorkDetailHeroMedia file={block.mediaFile} />
+          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
         </div>
       </section>
     );
@@ -279,18 +325,36 @@ function TemplateVariant({
           <div className="max-w-[872px]">{text}</div>
         </div>
         <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-0 lg:left-0 lg:mt-0">
-          <WorkDetailHeroMedia file={block.mediaFile} />
+          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
         </div>
       </section>
     );
   }
 
   if (block.type === "lineOne") {
+    const lineMediaFile = getMediaFile(block, 0);
+    const isLineOneMediaShort48 =
+      typeof lineMediaFile === "string" &&
+      (lineMediaFile.includes("peerworker-04.png") || lineMediaFile.includes("atom-01.png"));
+
     return (
       <section className="mx-auto w-full max-w-[1352px] py-0">
-        <div className="aspect-[1352/520] w-full overflow-hidden bg-zinc-100">
-          <WorkDetailHeroMedia file={block.mediaFile} />
-        </div>
+        {isLineOneMediaShort48 ? (
+          <div className="relative w-full overflow-hidden bg-zinc-100">
+            <div
+              className="pointer-events-none w-full"
+              style={{ paddingBottom: "calc(100% * 520 / 1352 - 48px)" }}
+              aria-hidden
+            />
+            <div className="absolute inset-0">
+              <WorkDetailHeroMedia file={lineMediaFile} />
+            </div>
+          </div>
+        ) : (
+          <div className="aspect-[1352/520] w-full overflow-hidden bg-zinc-100">
+            <WorkDetailHeroMedia file={lineMediaFile} />
+          </div>
+        )}
         <div className="mt-10 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-center lg:gap-x-12">
           <div className="flex min-w-0 flex-col gap-6 lg:flex-1">
             <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">

@@ -324,6 +324,52 @@ const DEFAULT_BLOCKS: WorkDetailBlock[] = [
   },
 ];
 
+/** サムネ・本文・画像を後から入れる作品用 */
+const PLACEHOLDER_DETAIL_BLOCKS: WorkDetailBlock[] = [
+  {
+    type: "headlineBody",
+    eyebrow: "Overview",
+    title: "準備中",
+    body: "サムネイル・画像・説明文は追って追加予定です。",
+  },
+];
+
+const NAFTY_DETAIL: WorkDetailConfig = {
+  hero: {
+    headline: "**Nafty**",
+    summary:
+      "株式会社KAKUKAKU。\nサムネイル・画像・説明文は追って追加予定です。",
+    date: "—",
+    tags: ["準備中"],
+    roles: ["—"],
+  },
+  blocks: PLACEHOLDER_DETAIL_BLOCKS,
+};
+
+const FLEX_CAPITAL_DETAIL: WorkDetailConfig = {
+  hero: {
+    headline: "**Flex Capital**",
+    summary:
+      "株式会社Fivot。\nサムネイル・画像・説明文は追って追加予定です。",
+    date: "—",
+    tags: ["準備中"],
+    roles: ["—"],
+  },
+  blocks: PLACEHOLDER_DETAIL_BLOCKS,
+};
+
+const CREATIVE_ASSET_PRODUCTION_DETAIL: WorkDetailConfig = {
+  hero: {
+    headline: "**クリエイティブアセット制作**",
+    summary:
+      "株式会社センティリオンシステム。\nサムネイル・画像・説明文は追って追加予定です。",
+    date: "—",
+    tags: ["準備中"],
+    roles: ["—"],
+  },
+  blocks: PLACEHOLDER_DETAIL_BLOCKS,
+};
+
 const IDARE_DETAIL: WorkDetailConfig = {
   hero: {
     headline: "**楽しく貯める**\n**貯蓄体験**を\nデザインする",
@@ -911,6 +957,9 @@ export function getWorkDetailConfig(slug: string): WorkDetailConfig {
   else if (slug === "nissan-gt-r") base = NISSAN_GT_R_DETAIL;
   else if (slug === "kume-sekkei") base = KUME_SEKKEI_DETAIL;
   else if (slug === "atom-interaction") base = ATOM_INTERACTION_DETAIL;
+  else if (slug === "nafty") base = NAFTY_DETAIL;
+  else if (slug === "flex-capital") base = FLEX_CAPITAL_DETAIL;
+  else if (slug === "creative-asset-production") base = CREATIVE_ASSET_PRODUCTION_DETAIL;
   else
     base = {
     hero: {

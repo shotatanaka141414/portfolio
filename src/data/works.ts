@@ -15,6 +15,21 @@ export type WorkItem = {
  */
 export const WORKS: WorkItem[] = [
   {
+    slug: "nafty",
+    title: "Nafty",
+    client: "株式会社KAKUKAKU",
+  },
+  {
+    slug: "flex-capital",
+    title: "Flex Capital",
+    client: "株式会社Fivot",
+  },
+  {
+    slug: "creative-asset-production",
+    title: "クリエイティブアセット制作",
+    client: "株式会社センティリオンシステム",
+  },
+  {
     slug: "idare",
     title: "IDARE",
     client: "株式会社Fivot",

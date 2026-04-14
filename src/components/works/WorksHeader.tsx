@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 const strikeFromLeft =
   "relative inline-block after:pointer-events-none after:absolute after:left-0 after:top-1/2 after:h-px after:w-full after:-translate-y-1/2 after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100";
 
@@ -17,7 +19,7 @@ export function WorksHeader() {
           className="flex h-10 w-10 items-center justify-center md:h-11 md:w-11"
         >
           <Image
-            src="/images/home/header-mark.svg"
+            src={publicAssetUrl("/images/home/header-mark.svg")}
             alt="GUSHO"
             width={30}
             height={26}

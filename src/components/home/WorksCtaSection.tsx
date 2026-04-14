@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 /**
  * 背景は CSS の url() で直接参照する（next/image の最適化キャッシュで差し替えが反映されないことがあるため）
  */
@@ -10,7 +12,7 @@ export function WorksCtaSection() {
       <div
         className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
         style={{
-          backgroundImage: "url(/images/home/works-cta-bg.png)",
+          backgroundImage: `url(${publicAssetUrl("/images/home/works-cta-bg.png")})`,
         }}
         aria-hidden
       />
@@ -28,7 +30,7 @@ export function WorksCtaSection() {
         </div>
         <span className="relative h-16 w-16 shrink-0 sm:h-20 sm:w-20">
           <Image
-            src="/images/home/works-cta-button.svg"
+            src={publicAssetUrl("/images/home/works-cta-button.svg")}
             alt=""
             width={80}
             height={80}

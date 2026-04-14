@@ -1,6 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
+import { useWorkDetailMediaOptions } from "./WorkDetailMediaOptions";
 
 type Props = {
   file?: string;
@@ -9,7 +13,33 @@ type Props = {
 
 /** 作品詳細のファーストビュー用メディア。動画優先、見つからなければ画像へフォールバック */
 export function WorkDetailHeroMedia({ file, className = "" }: Props) {
+  const { deferMediaUntilVisible } = useWorkDetailMediaOptions();
+  const [canLoad, setCanLoad] = useState(!deferMediaUntilVisible);
   const [index, setIndex] = useState(0);
+  const holdRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!deferMediaUntilVisible) return;
+    setCanLoad(false);
+    setIndex(0);
+  }, [file, deferMediaUntilVisible]);
+
+  useEffect(() => {
+    if (!deferMediaUntilVisible || canLoad) return;
+    const el = holdRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setCanLoad(true);
+          io.disconnect();
+        }
+      },
+      { root: null, rootMargin: "160px 0px", threshold: 0.01 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [deferMediaUntilVisible, canLoad, file]);
 
   const candidates = useMemo(() => {
     if (!file) return [] as string[];
@@ -24,20 +54,28 @@ export function WorkDetailHeroMedia({ file, className = "" }: Props) {
       .map((segment) => encodeURIComponent(segment))
       .join("/");
     const direct = normalized.includes("/") ? [`/${enc}`] : [];
-    return [
+    /** 実ファイルは多くが `public/images/works/` 配下のため、誤った URL を減らして初期表示を速くする */
+    const raw = [
       ...direct,
-      `/images/${enc}`,
-      `/videos/${enc}`,
       `/images/works/${enc}`,
       `/videos/works/${enc}`,
       `/images/works/detail/${enc}`,
       `/videos/works/detail/${enc}`,
+      `/images/${enc}`,
+      `/videos/${enc}`,
       `/images/works/${baseEnc}.jpg`,
       `/images/works/${baseEnc}.png`,
       `/images/works/detail/${baseEnc}.jpg`,
       `/images/works/detail/${baseEnc}.png`,
     ];
+    return raw.map((p) => publicAssetUrl(p));
   }, [file]);
+
+  if (!canLoad) {
+    return (
+      <div ref={holdRef} className={`h-full w-full bg-zinc-100 ${className}`} aria-hidden />
+    );
+  }
 
   const src = candidates[index];
   const isVideo = !!src && /\.(mp4|mov|webm|ogg|m4v)(\?|$)/i.test(src);

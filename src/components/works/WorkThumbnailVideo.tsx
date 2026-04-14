@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 type Props = {
   slug: string;
   /** 例: IDARE.mp4 — 省略時は `<slug>.mp4` */
@@ -15,21 +17,47 @@ type Props = {
 export function WorkThumbnailVideo({ slug, videoFile }: Props) {
   const [videoError, setVideoError] = useState(false);
   const [pathIndex, setPathIndex] = useState(0);
-  const [active, setActive] = useState(false);
+  const [hoverActive, setHoverActive] = useState(false);
+  const [isSp, setIsSp] = useState(false);
+  const [inView, setInView] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const fileName = videoFile ?? `${slug}.mp4`;
   const encoded = encodeURIComponent(fileName);
   const candidateSrcs = [
-    `/images/works/${encoded}`,
-    `/videos/works/${encoded}`,
+    publicAssetUrl(`/images/works/${encoded}`),
+    publicAssetUrl(`/videos/works/${encoded}`),
   ] as const;
   const src = candidateSrcs[pathIndex] ?? candidateSrcs[0];
 
   useEffect(() => {
     setVideoError(false);
     setPathIndex(0);
-    setActive(false);
+    setHoverActive(false);
   }, [fileName]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => setIsSp(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { root: null, threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const active = isSp ? inView : hoverActive;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,10 +83,11 @@ export function WorkThumbnailVideo({ slug, videoFile }: Props) {
 
   return (
     <div
+      ref={rootRef}
       className="relative aspect-[694/668] w-full overflow-hidden bg-zinc-100"
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      onTouchStart={() => setActive(true)}
+      onMouseEnter={() => setHoverActive(true)}
+      onMouseLeave={() => setHoverActive(false)}
+      onTouchStart={() => setHoverActive(true)}
     >
       <video
         key={src}

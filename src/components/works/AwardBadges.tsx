@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import type { WorkItem } from "@/data/works";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 
 function OptionalBadge({
   src,
@@ -46,14 +47,14 @@ export function AwardBadges({ awards }: { awards?: WorkItem["awards"] }) {
     <div className="pointer-events-none absolute right-3 top-[-12px] z-10 flex flex-col items-end gap-1 sm:right-4 sm:top-[-8px] md:gap-1">
       {awards.includes("gooddesign") && (
         <OptionalBadge
-          src="/images/works/award-gooddesign.png"
+          src={publicAssetUrl("/images/works/award-gooddesign.png")}
           shortLabel="GD"
           sizeClass="h-[72px] w-[72px] sm:h-[100px] sm:w-[100px] md:h-[123px] md:w-[123px]"
         />
       )}
       {awards.includes("reddot") && (
         <OptionalBadge
-          src="/images/works/award-reddot.png"
+          src={publicAssetUrl("/images/works/award-reddot.png")}
           shortLabel="RD"
           sizeClass="h-[64px] w-[64px] sm:h-[88px] sm:w-[88px] md:h-[110px] md:w-[110px]"
         />

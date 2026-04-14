@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { WorkItem } from "@/data/works";
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import type { WorkDetailHero as HeroData } from "@/data/work-details";
 
 import { WorkDetailHeroMedia } from "./WorkDetailHeroMedia";
@@ -150,7 +151,7 @@ export function WorkDetailHero({
               <p className="text-[clamp(2rem,4.2vw,3.25rem)] leading-[1.4] text-[#242424]">
                 {renderHeadlineWithBold(hero.headline)}
               </p>
-              <p className="whitespace-pre-line text-base font-light leading-[1.8] text-[#242424]">
+              <p className="whitespace-normal text-base font-light leading-[1.8] text-[#242424] md:whitespace-pre-line">
                 {hero.summary}
               </p>
             </div>
@@ -158,7 +159,7 @@ export function WorkDetailHero({
         </div>
 
         <div className="relative w-full max-w-[852px]">
-          <div className="aspect-[852/822] w-full overflow-hidden bg-zinc-100">
+          <div className="aspect-[3/5] w-full overflow-hidden bg-zinc-100 lg:aspect-[852/822]">
             <WorkDetailHeroMedia file={hero.mediaFile ?? work.videoFile} />
           </div>
 
@@ -166,14 +167,14 @@ export function WorkDetailHero({
             <div className="pointer-events-none absolute right-3 top-[-12px] z-10 flex flex-col items-end gap-1 sm:right-4 sm:top-[-8px] md:gap-1">
               {work.awards.includes("gooddesign") && (
                 <img
-                  src="/images/works/award-gooddesign.png"
+                  src={publicAssetUrl("/images/works/award-gooddesign.png")}
                   alt="Good Design Award"
                   className="h-[72px] w-[72px] sm:h-[100px] sm:w-[100px] md:h-[123px] md:w-[123px]"
                 />
               )}
               {work.awards.includes("reddot") && (
                 <img
-                  src="/images/works/award-reddot.png"
+                  src={publicAssetUrl("/images/works/award-reddot.png")}
                   alt="Red Dot Award"
                   className="h-[64px] w-[64px] sm:h-[88px] sm:w-[88px] md:h-[110px] md:w-[110px]"
                 />
@@ -200,7 +201,7 @@ export function WorkDetailHero({
             {hero.roles.map((role) => (
               <span
                 key={role}
-                className="inline-flex w-fit bg-white pr-4 text-[clamp(1.5rem,2.3vw,2rem)] font-light leading-[1.625] text-[#242424]"
+                className="inline-flex w-fit bg-white pr-4 text-[clamp(1rem,2.3vw,1.5rem)] font-light leading-[1.625] text-[#242424] lg:text-[clamp(1.5rem,2.3vw,2rem)]"
               >
                 {role}
               </span>

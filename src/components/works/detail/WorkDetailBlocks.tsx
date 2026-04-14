@@ -4,6 +4,7 @@ import type { WorkDetailBlock } from "@/data/work-details";
 import { resolveWorkDetailSectionNumber } from "@/data/work-details";
 
 import { WorkDetailHeroMedia } from "./WorkDetailHeroMedia";
+import { WorkDetailMediaOptionsProvider } from "./WorkDetailMediaOptions";
 
 function getMediaFile(block: WorkDetailBlock, slot = 0): string | undefined {
   const withMediaFiles = block as WorkDetailBlock & { mediaFiles?: string[]; mediaFile?: string };
@@ -52,6 +53,19 @@ function SectionNumberLabel({ value }: { value: number }) {
   );
 }
 
+/** SP は改行/半角スペースを除去、PC はデータ改行を維持 */
+const sectionHeadingClass = "text-[28px] font-bold leading-[1.4] text-[#242424]";
+
+function SectionHeading({ title }: { title: string }) {
+  const mobileTitle = title.replace(/[ \t\r\n]+/g, "");
+  return (
+    <h3 className={sectionHeadingClass}>
+      <span className="md:hidden">{mobileTitle}</span>
+      <span className="hidden whitespace-pre-line md:inline">{title}</span>
+    </h3>
+  );
+}
+
 function SectionText({
   eyebrow,
   title,
@@ -66,9 +80,7 @@ function SectionText({
       <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
         {eyebrow}
       </p>
-      <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
-        {title}
-      </h3>
+      <SectionHeading title={title} />
       <p className="text-base font-light leading-[1.8em] text-[#242424]">{body}</p>
     </div>
   );
@@ -80,9 +92,7 @@ function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "m
       <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
         {block.eyebrow}
       </p>
-      <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
-        {block.title}
-      </h3>
+      <SectionHeading title={block.title} />
     </div>
   );
 
@@ -111,14 +121,14 @@ function MediaTextTwoCol({ block }: { block: Extract<WorkDetailBlock, { type: "m
   return (
     <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:items-stretch lg:gap-8 xl:gap-10">
       <div
-        className={`min-w-0 flex-1 ${block.reverse ? "order-3 lg:order-3" : "order-1 lg:order-1"}`}
+        className={`min-w-0 flex-1 ${block.reverse ? "order-1 lg:order-3" : "order-1 lg:order-1"}`}
       >
         {titleCol}
       </div>
-      <div className="order-2 w-full max-w-[420px] shrink-0 lg:order-2">{mediaCol}</div>
+      <div className="order-3 w-full max-w-[420px] shrink-0 lg:order-2">{mediaCol}</div>
       <div
         className={`flex min-h-0 w-full min-w-0 flex-1 flex-col justify-end self-stretch lg:min-h-0 ${
-          block.reverse ? "order-1 lg:order-1" : "order-3 lg:order-3"
+          block.reverse ? "order-2 lg:order-1" : "order-2 lg:order-3"
         }`}
       >
         <p className="text-base font-light leading-[1.8em] text-[#242424]">{block.body}</p>
@@ -140,9 +150,7 @@ function ImageLeftTextRight({ block }: { block: Extract<WorkDetailBlock, { type:
   return (
     <section
       className={`mx-auto flex w-full max-w-[1352px] gap-10 py-0 lg:items-stretch lg:gap-8 xl:gap-10 ${
-        block.reverse
-          ? "flex-col-reverse lg:flex-row-reverse"
-          : "flex-col lg:flex-row"
+        block.reverse ? "flex-col-reverse lg:flex-row-reverse" : "flex-col-reverse lg:flex-row"
       }`}
     >
       {media}
@@ -152,9 +160,20 @@ function ImageLeftTextRight({ block }: { block: Extract<WorkDetailBlock, { type:
 }
 
 function FullImageOverlay({ block }: { block: Extract<WorkDetailBlock, { type: "fullImageOverlay" }> }) {
+  const textProps = { eyebrow: block.eyebrow, title: block.title, body: block.body };
   return (
     <section className="mx-auto w-full max-w-[1352px] py-0">
-      <div className="relative overflow-hidden bg-zinc-100">
+      <div className="flex flex-col gap-8 lg:hidden">
+        <div className="max-w-[792px]">
+          <SectionText {...textProps} />
+        </div>
+        <div className="relative overflow-hidden bg-zinc-100">
+          <div className="aspect-[1352/600] w-full">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
+        </div>
+      </div>
+      <div className="relative hidden overflow-hidden bg-zinc-100 lg:block">
         <div className="aspect-[1352/600] w-full">
           <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
         </div>
@@ -163,7 +182,7 @@ function FullImageOverlay({ block }: { block: Extract<WorkDetailBlock, { type: "
             block.align === "left" ? "left-8" : "right-8"
           }`}
         >
-          <SectionText eyebrow={block.eyebrow} title={block.title} body={block.body} />
+          <SectionText {...textProps} />
         </div>
       </div>
     </section>
@@ -217,29 +236,47 @@ function TemplateVariant({
     }
   >;
 }) {
-  const text = <SectionText eyebrow={block.eyebrow} title={block.title} body={block.body} />;
+  const textProps = { eyebrow: block.eyebrow, title: block.title, body: block.body };
 
   if (block.type === "quoteTwoLeft") {
     return (
-      <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:gap-10">
-        <Media520 file={getMediaFile(block, 0)} />
-        <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
-          <MediaStrip file={getMediaFile(block, 1)} />
-          {text}
-        </div>
-      </section>
+      <>
+        <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-6 py-0 lg:hidden">
+          <SectionText {...textProps} />
+          <div className="flex flex-col gap-4">
+            <Media520 file={getMediaFile(block, 0)} />
+            <MediaStrip file={getMediaFile(block, 1)} />
+          </div>
+        </section>
+        <section className="mx-auto hidden w-full max-w-[1352px] flex-row gap-10 py-0 lg:flex">
+          <Media520 file={getMediaFile(block, 0)} />
+          <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
+            <MediaStrip file={getMediaFile(block, 1)} />
+            <SectionText {...textProps} />
+          </div>
+        </section>
+      </>
     );
   }
 
   if (block.type === "quoteTwoRight") {
     return (
-      <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:gap-10">
-        <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
-          {text}
-          <MediaStrip file={getMediaFile(block, 0)} />
-        </div>
-        <Media520 file={getMediaFile(block, 1)} />
-      </section>
+      <>
+        <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-6 py-0 lg:hidden">
+          <SectionText {...textProps} />
+          <div className="flex flex-col gap-4">
+            <MediaStrip file={getMediaFile(block, 0)} />
+            <Media520 file={getMediaFile(block, 1)} />
+          </div>
+        </section>
+        <section className="mx-auto hidden w-full max-w-[1352px] flex-row gap-10 py-0 lg:flex">
+          <div className="flex w-full max-w-[792px] flex-col justify-between gap-10">
+            <SectionText {...textProps} />
+            <MediaStrip file={getMediaFile(block, 0)} />
+          </div>
+          <Media520 file={getMediaFile(block, 1)} />
+        </section>
+      </>
     );
   }
 
@@ -247,8 +284,12 @@ function TemplateVariant({
     return (
       <section className="mx-auto relative w-full max-w-[1352px] py-0">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:gap-10">
-          <Media520 file={getMediaFile(block, 0)} />
-          <div className="max-w-[372px]">{text}</div>
+          <div className="order-2 lg:order-1">
+            <Media520 file={getMediaFile(block, 0)} />
+          </div>
+          <div className="order-1 max-w-[372px] lg:order-2">
+            <SectionText {...textProps} />
+          </div>
         </div>
         <div
           className={`pointer-events-none absolute hidden h-40 w-40 rounded-full border border-[#242424]/40 lg:block ${
@@ -285,33 +326,61 @@ function TemplateVariant({
     );
     return (
       <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-10 py-0 lg:flex-row lg:items-end lg:gap-10">
-        {renderSideMedia(leftFile)}
-        <div className="w-full max-w-[432px]">{text}</div>
-        {renderSideMedia(rightFile)}
+        <div className="order-1 w-full max-w-[432px] lg:order-2">
+          <SectionText {...textProps} />
+        </div>
+        <div className="order-2 flex w-full flex-col gap-4 lg:contents">
+          <div className="lg:order-1">{renderSideMedia(leftFile)}</div>
+          <div className="lg:order-3">{renderSideMedia(rightFile)}</div>
+        </div>
       </section>
     );
   }
 
   if (block.type === "upOne") {
     return (
-      <section className="mx-auto relative w-full max-w-[1352px] py-0">
-        <div className="aspect-[1352/600] w-full overflow-hidden bg-zinc-100">
-          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+      <section className="mx-auto w-full max-w-[1352px] py-0">
+        <div className="flex flex-col gap-8 lg:hidden">
+          <div className="max-w-[432px] bg-white p-6">
+            <SectionText {...textProps} />
+          </div>
+          <div className="aspect-[1352/600] w-full overflow-hidden bg-zinc-100">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
         </div>
-        <div className="absolute bottom-8 right-8 max-w-[432px] bg-white/92 p-6">{text}</div>
+        <div className="relative hidden lg:block">
+          <div className="aspect-[1352/600] w-full overflow-hidden bg-zinc-100">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
+          <div className="absolute bottom-8 right-8 max-w-[432px] bg-white/92 p-6">
+            <SectionText {...textProps} />
+          </div>
+        </div>
       </section>
     );
   }
 
   if (block.type === "quoteOneRight") {
     return (
-      <section className="mx-auto relative w-full max-w-[1352px] py-0">
-        <div className="grid gap-10 lg:grid-cols-[872px_1fr]">
-          <div className="max-w-[872px]">{text}</div>
-          <div className="hidden lg:block" />
+      <section className="mx-auto w-full max-w-[1352px] py-0">
+        <div className="flex flex-col gap-8 lg:hidden">
+          <div className="max-w-[872px]">
+            <SectionText {...textProps} />
+          </div>
+          <div className="aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
         </div>
-        <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-12 lg:right-0 lg:mt-0">
-          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+        <div className="relative hidden lg:block">
+          <div className="grid gap-10 lg:grid-cols-[872px_1fr]">
+            <div className="max-w-[872px]">
+              <SectionText {...textProps} />
+            </div>
+            <div className="hidden lg:block" />
+          </div>
+          <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-12 lg:right-0 lg:mt-0">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
         </div>
       </section>
     );
@@ -319,13 +388,25 @@ function TemplateVariant({
 
   if (block.type === "lOne") {
     return (
-      <section className="mx-auto relative w-full max-w-[1352px] py-0">
-        <div className="grid gap-10 lg:grid-cols-[1fr_872px]">
-          <div className="hidden lg:block" />
-          <div className="max-w-[872px]">{text}</div>
+      <section className="mx-auto w-full max-w-[1352px] py-0">
+        <div className="flex flex-col gap-8 lg:hidden">
+          <div className="max-w-[872px]">
+            <SectionText {...textProps} />
+          </div>
+          <div className="aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
         </div>
-        <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-0 lg:left-0 lg:mt-0">
-          <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+        <div className="relative hidden lg:block">
+          <div className="grid gap-10 lg:grid-cols-[1fr_872px]">
+            <div className="hidden lg:block" />
+            <div className="max-w-[872px]">
+              <SectionText {...textProps} />
+            </div>
+          </div>
+          <div className="mt-8 aspect-[880/600] w-full max-w-[880px] overflow-hidden bg-zinc-100 lg:absolute lg:bottom-0 lg:left-0 lg:mt-0">
+            <WorkDetailHeroMedia file={getMediaFile(block, 0)} />
+          </div>
         </div>
       </section>
     );
@@ -337,36 +418,57 @@ function TemplateVariant({
       typeof lineMediaFile === "string" &&
       (lineMediaFile.includes("peerworker-04.png") || lineMediaFile.includes("atom-01.png"));
 
-    return (
-      <section className="mx-auto w-full max-w-[1352px] py-0">
-        {isLineOneMediaShort48 ? (
-          <div className="relative w-full overflow-hidden bg-zinc-100">
-            <div
-              className="pointer-events-none w-full"
-              style={{ paddingBottom: "calc(100% * 520 / 1352 - 48px)" }}
-              aria-hidden
-            />
-            <div className="absolute inset-0">
-              <WorkDetailHeroMedia file={lineMediaFile} />
-            </div>
-          </div>
-        ) : (
-          <div className="aspect-[1352/520] w-full overflow-hidden bg-zinc-100">
+    const renderLineOneMedia = () =>
+      isLineOneMediaShort48 ? (
+        <div className="relative w-full overflow-hidden bg-zinc-100">
+          <div
+            className="pointer-events-none w-full"
+            style={{ paddingBottom: "calc(100% * 520 / 1352 - 48px)" }}
+            aria-hidden
+          />
+          <div className="absolute inset-0">
             <WorkDetailHeroMedia file={lineMediaFile} />
           </div>
-        )}
-        <div className="mt-10 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-center lg:gap-x-12">
-          <div className="flex min-w-0 flex-col gap-6 lg:flex-1">
-            <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
-              {block.eyebrow}
-            </p>
-            <h3 className="whitespace-pre-line text-[28px] font-bold leading-[1.4] text-[#242424]">
-              {block.title}
-            </h3>
-          </div>
-          <p className="min-w-0 text-base font-light leading-[1.8em] text-[#242424] lg:flex-1">{block.body}</p>
         </div>
-      </section>
+      ) : (
+        <div className="aspect-[1352/520] w-full overflow-hidden bg-zinc-100">
+          <WorkDetailHeroMedia file={lineMediaFile} />
+        </div>
+      );
+
+    const textBlockProps = {
+      eyebrow: block.eyebrow,
+      title: block.title,
+      body: block.body,
+    };
+
+    return (
+      <>
+        <section className="mx-auto flex w-full max-w-[1352px] flex-col gap-6 py-0 lg:hidden">
+          <div className="mt-0 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-center lg:gap-x-12">
+            <div className="flex min-w-0 flex-col gap-6 lg:flex-1">
+              <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
+                {textBlockProps.eyebrow}
+              </p>
+              <SectionHeading title={textBlockProps.title} />
+            </div>
+            <p className="min-w-0 text-base font-light leading-[1.8em] text-[#242424] lg:flex-1">{textBlockProps.body}</p>
+          </div>
+          {renderLineOneMedia()}
+        </section>
+        <section className="mx-auto hidden w-full max-w-[1352px] py-0 lg:block">
+          {renderLineOneMedia()}
+          <div className="mt-10 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:items-center lg:gap-x-12">
+            <div className="flex min-w-0 flex-col gap-6 lg:flex-1">
+              <p className="inline-flex w-fit items-center rounded-full border border-[#242424] bg-white px-3 py-1 font-en text-[14px] font-normal leading-[1.4] text-[#242424]">
+                {textBlockProps.eyebrow}
+              </p>
+              <SectionHeading title={textBlockProps.title} />
+            </div>
+            <p className="min-w-0 text-base font-light leading-[1.8em] text-[#242424] lg:flex-1">{textBlockProps.body}</p>
+          </div>
+        </section>
+      </>
     );
   }
 
@@ -393,14 +495,18 @@ export function WorkDetailBlocks({
   blocks,
   previewSectionLabels = false,
   showSectionNumbers = false,
+  /** テンプレ一覧プレビュー向け。画面内に入るまで動画・画像を読み込まず、同時読み込みによる固まりを防ぐ */
+  deferBlockMediaUntilVisible = false,
 }: {
   blocks: WorkDetailBlock[];
   /** プレビュー用のみ。各ブロック直上に実装名を表示（本番では false のまま） */
   previewSectionLabels?: boolean;
   /** true のときのみ 01 などの番号ラベルを表示 */
   showSectionNumbers?: boolean;
+  deferBlockMediaUntilVisible?: boolean;
 }) {
   return (
+    <WorkDetailMediaOptionsProvider deferMediaUntilVisible={deferBlockMediaUntilVisible}>
     <div className="mx-auto flex w-full max-w-[1512px] flex-col gap-[160px] px-5 pb-12 md:px-20">
       {blocks.map((block, idx) => {
         const key = `${block.type}-${idx}`;
@@ -426,5 +532,6 @@ export function WorkDetailBlocks({
         );
       })}
     </div>
+    </WorkDetailMediaOptionsProvider>
   );
 }

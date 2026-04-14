@@ -1,7 +1,9 @@
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 import { ResponsiveDiagramImage } from "./ResponsiveDiagramImage";
 
-const PC = "/images/home/my-speciality.jpg";
-const SP = "/images/home/my-speciality-sp.jpg";
+const PC = publicAssetUrl("/images/home/my-speciality.jpg");
+const SP = publicAssetUrl("/images/home/my-speciality-sp.jpg");
 
 export function SpecialitySection() {
   return (

@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 import { HomeHeader } from "./HomeHeader";
 
-const HERO_VIDEO_SRC = "/videos/hero.mp4";
+const HERO_VIDEO_SRC = publicAssetUrl("/videos/hero.mp4");
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,7 +50,7 @@ export function HeroSection() {
       </video>
       <HomeHeader />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden pr-5 transition-[opacity] duration-300 ease-out md:flex md:justify-end md:pr-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center pb-0 transition-[opacity] duration-300 ease-out md:justify-end md:pr-10"
         style={{ opacity: heroFade }}
         aria-hidden
       >

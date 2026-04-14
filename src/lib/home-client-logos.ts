@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 const IMAGE_EXT = /\.(png|jpe?g|gif|webp|svg)$/i;
 
 /** ファイル名（拡張子なし）から簡易 alt テキスト */
@@ -26,7 +28,7 @@ export function listClientLogos(): { src: string; alt: string }[] {
     .map((file) => {
       const base = path.basename(file, path.extname(file));
       return {
-        src: `/images/home/clients/${file}`,
+        src: publicAssetUrl(`/images/home/clients/${file}`),
         alt: altFromFilename(base),
       };
     });

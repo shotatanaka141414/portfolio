@@ -1,3 +1,5 @@
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 import { CareerLogoSlot } from "./CareerLogoSlot";
 
 /**
@@ -27,6 +29,8 @@ const ENTRIES = [
     period: "2016.4 ~ 2019.9",
     org: "HAKUHODO I-STUDIO",
     title: "株式会社博報堂アイ・スタジオ\nUX/UIデザイナー",
+    /** SP のみ表記（md 以上は title） */
+    titleSp: "株式会社博報堂アイスタジオ\nUX/UIデザイナー",
     body: "NISSAN、JTの他、物流、建築、電器機器などのWEBサービスのUI・UXを担当。200~1000ページ強ある大型コーポレートサイトを多く担当し、 実装工数や運用面を考慮したデザインシステムの構築を得意分野として活動した。",
     logoSrc: "/images/home/career/hakuhodo-i-studio.png",
     logoFallback: "hakuhodo" as const,
@@ -41,11 +45,11 @@ export function CareerSection() {
           CAREER
         </h2>
         <div className="scrollbar-hide min-w-0 flex-1 overflow-x-auto overflow-y-visible pb-2 [-webkit-overflow-scrolling:touch]">
-          <div className="flex w-max gap-8 pr-0 lg:gap-10">
+          <div className="flex w-max gap-8 pr-5 md:pr-20 lg:gap-10">
             {ENTRIES.map((e) => (
               <article
                 key={e.org}
-                className="flex min-h-[28rem] w-[min(85vw,440px)] shrink-0 gap-4 sm:w-[400px] lg:w-[440px]"
+                className="flex min-h-[28rem] w-[min(72vw,360px)] shrink-0 gap-4 sm:w-[400px] lg:w-[440px]"
               >
                 <div className="flex w-4 shrink-0 flex-col items-center self-stretch pt-1">
                   <span
@@ -62,14 +66,21 @@ export function CareerSection() {
                     <p className="text-xl font-bold leading-snug">{e.org}</p>
                   </div>
                   <CareerLogoSlot
-                    logoSrc={e.logoSrc}
+                    logoSrc={publicAssetUrl(e.logoSrc)}
                     logoFallback={e.logoFallback}
                   />
                   <div className="flex max-w-[400px] flex-col gap-4">
-                    <h3 className="whitespace-pre-line text-xl font-bold leading-snug">
-                      {e.title}
+                    <h3 className="text-lg font-bold leading-snug md:text-xl">
+                      {"titleSp" in e && e.titleSp !== undefined ? (
+                        <>
+                          <span className="whitespace-pre-line md:hidden">{e.titleSp}</span>
+                          <span className="hidden whitespace-pre-line md:inline">{e.title}</span>
+                        </>
+                      ) : (
+                        <span className="whitespace-pre-line">{e.title}</span>
+                      )}
                     </h3>
-                    <p className="text-base font-normal leading-relaxed text-white">
+                    <p className="text-sm font-normal leading-relaxed text-white md:text-base">
                       {e.body}
                     </p>
                   </div>

@@ -1,0 +1,7 @@
+# Vercel（Hobby）のデプロイ容量上限（約 100MB）を超えるため、大きな動画のみアップロード対象から外す。
+# 実機のレイアウト確認には十分だが、該当ページの動画は表示されない。本番でフル表示する場合は
+# 動画の圧縮・短縮、または Blob / CDN 配信へ移行すること。
+public/images/detail/scramberry WALLET/scramberry-01.mov
+public/videos/hero.mp4
+public/images/detail/atom/atom-04.mov
+public/images/works/*.mp4

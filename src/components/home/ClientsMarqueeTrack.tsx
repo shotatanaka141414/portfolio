@@ -27,12 +27,12 @@ export function ClientsMarqueeTrack({ logos }: { logos: ClientLogo[] }) {
 
   if (logos.length === 0) {
     return (
-      <section className="w-full overflow-hidden bg-white py-14 md:py-20" />
+      <section className="scroll-reveal-manual-target w-full overflow-hidden bg-white py-14 md:py-20" />
     );
   }
 
   return (
-    <section className="w-full overflow-hidden bg-white py-14 md:py-20">
+    <section className="scroll-reveal-manual-target w-full overflow-hidden bg-white py-14 md:py-20">
       <div className="flex w-max min-w-full animate-marquee-logos">
         {doubled.map((c, i) => (
           <LogoSlot key={`${c.src}-${i}`} src={c.src} alt={c.alt} />

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
 import { ImageWithFallback } from "./ImageWithFallback";
 
 const BIO =
@@ -31,13 +33,13 @@ export function ProfileIntroSection() {
   return (
     <section className="mx-auto w-full max-w-[1512px] px-5 pb-16 md:px-20 md:pb-[120px]">
       <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-20">
-        <div className="relative mx-auto aspect-[546/820] w-full max-w-[546px] shrink-0 overflow-hidden bg-zinc-200 lg:mx-0">
+        <div className="relative mx-auto aspect-[546/820] w-[calc(100%-3rem)] max-w-[546px] shrink-0 overflow-hidden bg-zinc-200 lg:mx-0 lg:w-full">
           <Image
-            src="/images/home/profile-bg-6da149.png"
+            src={publicAssetUrl("/images/home/profile-bg-6da149.png")}
             alt=""
             fill
             className="object-cover"
-            sizes="(max-width:1024px) 100vw, 546px"
+            sizes="(max-width:1024px) calc(100vw - 2.5rem - 3rem), 546px"
           />
         </div>
 
@@ -58,7 +60,7 @@ export function ProfileIntroSection() {
               {AWARDS.map(({ slug, label, frame }) => (
                 <ImageWithFallback
                   key={slug}
-                  src={`/images/home/awards/${slug}.png`}
+                  src={publicAssetUrl(`/images/home/awards/${slug}.png`)}
                   alt={label}
                   containerClassName={awardFrameClass(frame)}
                   className={

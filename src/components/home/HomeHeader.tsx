@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { publicAssetUrl } from "@/lib/public-asset-url";
 import { useEffect, useState } from "react";
 
 /** 左→右へ走る打ち消し線（::after + scale-x） */
@@ -40,7 +42,7 @@ export function HomeHeader() {
           className="flex h-10 w-10 items-center justify-center md:h-11 md:w-11"
         >
           <Image
-            src="/images/home/header-mark.svg"
+            src={publicAssetUrl("/images/home/header-mark.svg")}
             alt="GUSHO"
             width={30}
             height={26}

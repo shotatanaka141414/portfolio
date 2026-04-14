@@ -17,27 +17,15 @@ export function HomePage() {
       <ScrollReveal>
         <InformationSection />
       </ScrollReveal>
-      <ScrollReveal>
-        <ProfileIntroSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <CareerSection />
-      </ScrollReveal>
+      <ProfileIntroSection />
+      <CareerSection />
       <ScrollReveal>
         <ClientsMarquee />
       </ScrollReveal>
-      <ScrollReveal>
-        <SpecialitySection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <ApproachSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <WorksCtaSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <ContactSection />
-      </ScrollReveal>
+      <SpecialitySection />
+      <ApproachSection />
+      <WorksCtaSection />
+      <ContactSection />
     </div>
   );
 }

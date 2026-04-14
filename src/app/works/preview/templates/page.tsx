@@ -14,7 +14,10 @@ export default function WorksPreviewTemplatesPage() {
           PREVIEW / Detail Templates
         </p>
       </div>
-      <WorkDetailBlocks blocks={PREVIEW_DETAIL_TEMPLATE_BLOCKS} />
+      <WorkDetailBlocks
+        blocks={PREVIEW_DETAIL_TEMPLATE_BLOCKS}
+        deferBlockMediaUntilVisible
+      />
     </main>
   );
 }

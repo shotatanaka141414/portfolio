@@ -71,15 +71,59 @@ body {
   animation: marquee-logos 55s linear infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-word-slot,
-  .animate-marquee-logos {
-    animation: none;
+@keyframes approach-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2.5rem, 0);
   }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
 
+.approach-fade-up {
+  animation: approach-fade-up 850ms ease-out both;
+  will-change: opacity, transform;
+}
+
+.approach-fade-up-delay-100 {
+  animation-delay: 100ms;
+}
+
+/** ビューポート連動のフェードアップ（ScrollRevealAutoScope が付与） */
+.scroll-reveal-vp {
+  opacity: 0;
+  transform: translate3d(0, 2.5rem, 0);
+  will-change: opacity, transform;
+  transition:
+    opacity 850ms ease-out,
+    transform 850ms ease-out;
+}
+
+.scroll-reveal-vp.scroll-reveal-vp--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     transform: none !important;
     opacity: 1 !important;
     transition: none !important;
+  }
+
+  .scroll-reveal-vp {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+
+  .approach-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
   }
 }

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
+
+import { ScrollRevealAutoScope } from "@/components/ScrollRevealAutoScope";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,6 +27,19 @@ export const metadata: Metadata = {
     template: "%s — GUSHO",
   },
   description: "ポートフォリオサイト",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -37,9 +53,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${notoSansJp.variable} h-full antialiased`}
     >
       <body
-        className={`min-h-full flex flex-col ${notoSansJp.className}`}
+        className={`flex min-h-full flex-col ${notoSansJp.className}`}
       >
-        {children}
+        <ScrollRevealAutoScope>{children}</ScrollRevealAutoScope>
       </body>
     </html>
   );

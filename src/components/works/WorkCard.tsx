@@ -13,11 +13,11 @@ export function WorkCard({ work }: { work: WorkItem }) {
           <WorkThumbnailVideo slug={work.slug} videoFile={work.videoFile} />
           <AwardBadges awards={work.awards} />
         </div>
-        <div className="flex min-w-0 flex-wrap items-center gap-5">
-          <h2 className="shrink-0 font-sans text-2xl font-bold leading-[1.25] tracking-tight text-[#242424]">
+        <div className="flex min-w-0 flex-col items-start gap-1 md:flex-row md:flex-wrap md:items-center md:gap-5">
+          <h2 className="shrink-0 font-sans text-2xl font-bold leading-[1.25] tracking-tight text-[#242424] md:order-1">
             {work.title}
           </h2>
-          <p className="min-w-0 flex-1 font-sans text-base font-normal leading-[1.875] text-[#6D6D6D]">
+          <p className="min-w-0 flex-1 font-sans text-base font-normal leading-[1.875] text-[#6D6D6D] md:order-2">
             {work.client}
           </p>
         </div>

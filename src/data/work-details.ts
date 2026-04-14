@@ -350,7 +350,7 @@ const IDARE_DETAIL: WorkDetailConfig = {
       type: "quoteTwoRight",
       eyebrow: "Approach",
       title:
-        "ユーザー中心は当たり前\nビジネスドリブンで進めた機能開発",
+        "ユーザー中心は当たり前、\nビジネスドリブンで進めた機能開発",
       body:
         "IDAREの残高は別サービスのFlex Capitalという融資サービスの資金源となり、そこで生まれた利益がIDAREのユーザーにボーナスとして還元される仕組みになっている。そのためIDAREの残高を増やせば増やすほど、運営会社の売上が上がり、ボーナスとしてIDAREユーザーに還元ができるため、ユーザー中心設計は当たり前で考えつつ、ビジネスとしてどう残高を増やすのかを考えた機能開発を行なった。",
       mediaFile: "IDARE.mp4",

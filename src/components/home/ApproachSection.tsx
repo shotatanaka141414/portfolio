@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+import { publicAssetUrl } from "@/lib/public-asset-url";
+
+import { ApproachAiSpDiagram } from "./approach-sp/ApproachAiSpDiagram";
+import { ApproachClassicSpDiagram } from "./approach-sp/ApproachClassicSpDiagram";
 import { ResponsiveDiagramImage } from "./ResponsiveDiagramImage";
 
 const DESCRIPTION_CLASSIC =
@@ -10,15 +14,13 @@ const DESCRIPTION_CLASSIC =
 const DESCRIPTION_AI =
   "AIを活用し、高速でアイデアをDesign & Developしてサービスを実装することで、仮説段階のプロダクトをいち早く市場へ投入します。。実際のユーザー行動という「答え」から、Discover & Define（課題の再定義）を逆引きで行います。リソースを最小限に抑えつつ、市場適合性（PMF）を最短距離で探るアプローチです。";
 
-const APPROACH_PC = "/images/home/my-approach.jpg";
-const APPROACH_SP = "/images/home/my-approach-sp.jpg";
-const APPROACH_AI_PC = "/images/home/my-approach-ai.jpg";
-const APPROACH_AI_SP = "/images/home/my-approach-ai-sp.jpg";
+const APPROACH_PC = publicAssetUrl("/images/home/my-approach.jpg");
+const APPROACH_AI_PC = publicAssetUrl("/images/home/my-approach-ai.jpg");
 
 type TabId = "classic" | "ai";
 
 const tabBase =
-  "flex w-56 items-center justify-center px-4 py-4 transition duration-200";
+  "flex w-full items-center justify-center px-3 py-3 transition duration-200 md:w-56 md:px-4 md:py-4";
 
 export function ApproachSection() {
   const [tab, setTab] = useState<TabId>("classic");
@@ -35,7 +37,7 @@ export function ApproachSection() {
       </div>
 
       <div
-        className="mb-8 flex flex-wrap gap-2"
+        className="mb-8 grid grid-cols-2 gap-2 md:flex md:flex-wrap"
         role="tablist"
         aria-label="アプローチの種類"
       >
@@ -51,7 +53,7 @@ export function ApproachSection() {
           }`}
         >
           <span
-            className={`text-center text-xl leading-[1.5] ${
+            className={`text-center text-base leading-[1.5] md:text-xl ${
               tab === "classic" ? "font-bold" : "font-normal"
             }`}
           >
@@ -70,7 +72,7 @@ export function ApproachSection() {
           }`}
         >
           <span
-            className={`text-center text-xl leading-[1.5] ${
+            className={`text-center text-base leading-[1.5] md:text-xl ${
               tab === "ai" ? "font-bold" : "font-normal"
             }`}
           >
@@ -79,24 +81,28 @@ export function ApproachSection() {
         </button>
       </div>
 
-      <div role="tabpanel" className="w-full">
-        <p className="mb-10 w-full max-w-[848px] text-base font-normal leading-[1.8] text-[#242424]">
+      <div key={tab} role="tabpanel" className="w-full">
+        <p
+          className="approach-fade-up mb-10 w-full max-w-[848px] text-base font-normal leading-[1.8] text-[#242424]"
+        >
           {tab === "classic" ? DESCRIPTION_CLASSIC : DESCRIPTION_AI}
         </p>
 
-        {tab === "classic" ? (
-          <ResponsiveDiagramImage
-            pcSrc={APPROACH_PC}
-            spSrc={APPROACH_SP}
-            alt="MY APPROACH — Discover、Define、Design、Develop、Deliverのプロセス図"
-          />
-        ) : (
-          <ResponsiveDiagramImage
-            pcSrc={APPROACH_AI_PC}
-            spSrc={APPROACH_AI_SP}
-            alt="MY APPROACH — AIドリブンフロー（Design＆Develop、Discover＆Define、Deliver）の説明図"
-          />
-        )}
+        <div className="approach-fade-up approach-fade-up-delay-100">
+          {tab === "classic" ? (
+            <ResponsiveDiagramImage
+              pcSrc={APPROACH_PC}
+              spContent={<ApproachClassicSpDiagram />}
+              alt="MY APPROACH — Discover、Define、Design、Develop、Deliverのプロセス図"
+            />
+          ) : (
+            <ResponsiveDiagramImage
+              pcSrc={APPROACH_AI_PC}
+              spContent={<ApproachAiSpDiagram />}
+              alt="MY APPROACH — AIドリブンフロー（Design＆Develop、Discover＆Define、Deliver）の説明図"
+            />
+          )}
+        </div>
       </div>
     </section>
   );

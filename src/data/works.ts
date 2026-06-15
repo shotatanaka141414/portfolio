@@ -4,6 +4,8 @@ export type WorkItem = {
   slug: string;
   title: string;
   client: string;
+  /** SP 向けクライアント表記（改行 `\n` 可）。未指定時は client を使用 */
+  clientSp?: string;
   /** public/videos/works/<file>.mp4 — 未配置時はプレースホルダ */
   videoFile?: string;
   awards?: WorkAward[];
@@ -18,6 +20,7 @@ export const WORKS: WorkItem[] = [
     slug: "creative-asset-production",
     title: "Assets Design",
     client: "株式会社センティリオンシステム",
+    clientSp: "株式会社\nセンティリオンシステム",
     videoFile: "Centillion-system.mp4",
   },
   {

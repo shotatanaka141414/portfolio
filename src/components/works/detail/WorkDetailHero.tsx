@@ -143,8 +143,9 @@ export function WorkDetailHero({
                 {work.title}
               </h1>
               <span className="h-6 w-px bg-[#D1D1D1]" aria-hidden />
-              <p className="font-sans text-sm font-normal leading-[1.83] text-[#242424]">
-                {work.client}
+              <p className="font-sans text-sm font-normal leading-[1.4em] text-[#242424]">
+                <span className="whitespace-pre-line md:hidden">{work.clientSp ?? work.client}</span>
+                <span className="hidden md:inline">{work.client}</span>
               </p>
             </div>
 

@@ -24,9 +24,10 @@ export function WorkThumbnailVideo({ slug, videoFile }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const fileName = videoFile ?? `${slug}.mp4`;
   const encoded = encodeURIComponent(fileName);
+  /** images/works/*.mp4 は .vercelignore 対象のため、先に videos/works を試す */
   const candidateSrcs = [
-    publicAssetUrl(`/images/works/${encoded}`),
     publicAssetUrl(`/videos/works/${encoded}`),
+    publicAssetUrl(`/images/works/${encoded}`),
   ] as const;
   const src = candidateSrcs[pathIndex] ?? candidateSrcs[0];
 

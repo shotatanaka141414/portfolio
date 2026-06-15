@@ -54,11 +54,11 @@ export function WorkDetailHeroMedia({ file, className = "" }: Props) {
       .map((segment) => encodeURIComponent(segment))
       .join("/");
     const direct = normalized.includes("/") ? [`/${enc}`] : [];
-    /** 実ファイルは多くが `public/images/works/` 配下のため、誤った URL を減らして初期表示を速くする */
+    /** images/works/*.mp4 は .vercelignore 対象のため videos/works を先に試す */
     const raw = [
       ...direct,
-      `/images/works/${enc}`,
       `/videos/works/${enc}`,
+      `/images/works/${enc}`,
       `/images/works/detail/${enc}`,
       `/videos/works/detail/${enc}`,
       `/images/${enc}`,

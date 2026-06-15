@@ -3,8 +3,8 @@
  * 未設定時は従来どおり同一オリジン（Vercel から配信）。
  *
  * 例: `NEXT_PUBLIC_MEDIA_CDN_BASE=https://xxxx.r2.dev` のとき、
- * `/videos/works/foo.mp4` → `https://xxxx.r2.dev/videos/works/foo.mp4`
- * （バケット側は `videos/`, `images/` を public と同じ階層で配置）
+ * `/images/detail/Nafty/nafty-01.png` → `https://xxxx.r2.dev/images/detail/Nafty/nafty-01.png`
+ * （R2 バケット portfolio-media 内は `images/` / `videos/` を public と同じ階層で配置）
  */
 export function publicAssetUrl(path: string): string {
   const raw = path.trim();

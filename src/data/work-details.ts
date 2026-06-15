@@ -85,13 +85,14 @@ export function resolveWorkDetailSectionNumber(block: WorkDetailBlock, index: nu
 
 /**
  * セカンドビュー以降のメディアは作品ごと・セクションごとに別ファイルを割り当てる。
- * 実ファイル格納先:
+ * 実ファイル格納先（R2 バケット portfolio-media）:
+ * - images/detail/Nafty/
+ * - images/detail/Centillion System/
+ * 公開 URL 例: NEXT_PUBLIC_MEDIA_CDN_BASE + /images/detail/Nafty/nafty-01.png
+ *
+ * ローカル fallback:
  * - /public/videos/works/detail
  * - /public/images/works/detail
- *
- * 例: slug が "yucho-pay" の場合
- * - yucho-pay-detail-01.mp4
- * - yucho-pay-detail-02.mp4
  */
 function withPerSectionDetailMedia(slug: string, blocks: WorkDetailBlock[]): WorkDetailBlock[] {
   if (slug === "idare") {

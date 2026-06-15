@@ -3,20 +3,24 @@
 import { useState } from "react";
 
 import type { WorkItem } from "@/data/works";
-import { publicAssetUrl } from "@/lib/public-asset-url";
+import { publicAssetUrl, publicAssetUrlCandidates } from "@/lib/public-asset-url";
 
 function OptionalBadge({
-  src,
+  assetPath,
   shortLabel,
   sizeClass,
   objectFit = "cover",
 }: {
-  src: string;
+  assetPath: string;
   shortLabel: string;
   sizeClass: string;
   objectFit?: "cover" | "contain";
 }) {
+  const candidates = publicAssetUrlCandidates(assetPath);
+  const [index, setIndex] = useState(0);
   const [failed, setFailed] = useState(false);
+  const src = candidates[index] ?? candidates[0] ?? assetPath;
+
   if (failed) {
     return (
       <div
@@ -35,7 +39,13 @@ function OptionalBadge({
         src={src}
         alt=""
         className={objectFit === "contain" ? "h-full w-full object-contain" : "h-full w-full object-cover"}
-        onError={() => setFailed(true)}
+        onError={() => {
+          if (index < candidates.length - 1) {
+            setIndex((prev) => prev + 1);
+            return;
+          }
+          setFailed(true);
+        }}
       />
     </div>
   );
@@ -51,14 +61,14 @@ export function AwardBadges({ awards }: { awards?: WorkItem["awards"] }) {
         <div className="pointer-events-none absolute right-3 top-[-12px] z-10 flex flex-col items-end gap-1 sm:right-4 sm:top-[-8px] md:gap-1">
           {awards.includes("gooddesign") && (
             <OptionalBadge
-              src={publicAssetUrl("/images/works/award-gooddesign.png")}
+              assetPath="/images/works/award-gooddesign.png"
               shortLabel="GD"
               sizeClass="h-[72px] w-[72px] sm:h-[100px] sm:w-[100px] md:h-[123px] md:w-[123px]"
             />
           )}
           {awards.includes("reddot") && (
             <OptionalBadge
-              src={publicAssetUrl("/images/works/award-reddot.png")}
+              assetPath="/images/works/award-reddot.png"
               shortLabel="RD"
               sizeClass="h-[64px] w-[64px] sm:h-[88px] sm:w-[88px] md:h-[110px] md:w-[110px]"
             />
@@ -68,7 +78,7 @@ export function AwardBadges({ awards }: { awards?: WorkItem["awards"] }) {
       {awards.includes("if-design") ? (
         <div className="pointer-events-none absolute right-3 top-3 z-10 sm:right-4 sm:top-4">
           <OptionalBadge
-            src={publicAssetUrl("/images/works/award-if-design-2026.png")}
+            assetPath="/images/works/award-if-design-2026.png"
             shortLabel="iF"
             sizeClass="h-[36px] w-[70px] sm:h-[50px] sm:w-[98px] md:h-[62px] md:w-[120px]"
             objectFit="contain"

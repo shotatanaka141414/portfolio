@@ -4,6 +4,7 @@ import type { WorkItem } from "@/data/works";
 import { publicAssetUrl } from "@/lib/public-asset-url";
 import type { WorkDetailHero as HeroData } from "@/data/work-details";
 
+import { IfDesignAwardBadge } from "../IfDesignAwardBadge";
 import { WorkDetailHeroMedia } from "./WorkDetailHeroMedia";
 
 /** 前の作品へ: ホバーで円内を黒塗り、矢印を白に */
@@ -184,11 +185,7 @@ export function WorkDetailHero({
 
           {work.awards?.includes("if-design") ? (
             <div className="pointer-events-none absolute right-3 top-3 z-10 sm:right-4 sm:top-4">
-              <img
-                src={publicAssetUrl("/images/works/award-if-design-2026.png")}
-                alt="iF Design Award 2026"
-                className="h-[36px] w-[70px] object-contain object-right sm:h-[50px] sm:w-[98px] md:h-[62px] md:w-[120px]"
-              />
+              <IfDesignAwardBadge className="h-[36px] w-[70px] object-contain object-right sm:h-[50px] sm:w-[98px] md:h-[62px] md:w-[120px]" />
             </div>
           ) : null}
 

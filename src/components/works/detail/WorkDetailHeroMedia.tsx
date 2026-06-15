@@ -54,11 +54,11 @@ export function WorkDetailHeroMedia({ file, className = "" }: Props) {
       .map((segment) => encodeURIComponent(segment))
       .join("/");
     const direct = normalized.includes("/") ? [`/${enc}`] : [];
-    /** images/works/*.mp4 は .vercelignore 対象のため videos/works を先に試す */
+    /** R2 / CDN は images/works 配下。Vercel 直配信用に videos/works をフォールバック */
     const raw = [
       ...direct,
-      `/videos/works/${enc}`,
       `/images/works/${enc}`,
+      `/videos/works/${enc}`,
       `/images/works/detail/${enc}`,
       `/videos/works/detail/${enc}`,
       `/images/${enc}`,

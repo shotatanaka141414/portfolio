@@ -1,4 +1,4 @@
-export type WorkAward = "gooddesign" | "reddot";
+export type WorkAward = "gooddesign" | "reddot" | "if-design";
 
 export type WorkItem = {
   slug: string;
@@ -15,19 +15,17 @@ export type WorkItem = {
  */
 export const WORKS: WorkItem[] = [
   {
+    slug: "creative-asset-production",
+    title: "Assets Design",
+    client: "株式会社センティリオンシステム",
+    videoFile: "Centillion-system.mp4",
+  },
+  {
     slug: "nafty",
     title: "Nafty",
     client: "株式会社KAKUKAKU",
-  },
-  {
-    slug: "flex-capital",
-    title: "Flex Capital",
-    client: "株式会社Fivot",
-  },
-  {
-    slug: "creative-asset-production",
-    title: "クリエイティブアセット制作",
-    client: "株式会社センティリオンシステム",
+    videoFile: "Nafty.mp4",
+    awards: ["if-design"],
   },
   {
     slug: "idare",

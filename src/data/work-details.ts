@@ -111,6 +111,46 @@ function withPerSectionDetailMedia(slug: string, blocks: WorkDetailBlock[]): Wor
     });
   }
 
+  if (slug === "nafty") {
+    const naftyMediaByBlock = [
+      ["images/detail/Nafty/nafty-01.png", "images/detail/Nafty/nafty-02.png"],
+      ["images/detail/Nafty/nafty-03.png"],
+      ["images/detail/Nafty/nafty-04.png"],
+      ["images/detail/Nafty/nafty-05.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = naftyMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
+  if (slug === "creative-asset-production") {
+    const centillionMediaByBlock = [
+      [
+        "images/detail/Centillion System/centillion-system-01.png",
+        "images/detail/Centillion System/centillion-system-02.mov",
+      ],
+      ["images/detail/Centillion System/centillion-system-03.png"],
+      [
+        "images/detail/Centillion System/centillion-system-04.png",
+        "images/detail/Centillion System/centillion-system-05.png",
+      ],
+      ["images/detail/Centillion System/centillion-system-06.png"],
+    ];
+    return blocks.map((block, index) => {
+      const files = centillionMediaByBlock[index] ?? [];
+      return {
+        ...block,
+        mediaFile: files[0],
+        mediaFiles: files.length ? files : undefined,
+      };
+    });
+  }
+
   if (slug === "shikazika") {
     const shikazikaMediaByBlock = [
       ["images/detail/SHIKAZIKA/shikazika-01.png"],
@@ -336,38 +376,94 @@ const PLACEHOLDER_DETAIL_BLOCKS: WorkDetailBlock[] = [
 
 const NAFTY_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "**Nafty**",
+    headline: "**医療・看護の**\n**独自シフト作成**を\nデザインする",
     summary:
-      "株式会社KAKUKAKU。\nサムネイル・画像・説明文は追って追加予定です。",
-    date: "—",
-    tags: ["準備中"],
-    roles: ["—"],
+      "医療現場のシフト作成は、複雑な条件を整理しながら調整を繰り返す必要があり、多くの現場で毎月2〜3日を要していました。Naftyでは、Generative AIと数理最適化を組み合わせ、人の意図をそのまま制約条件へと変換することで、シフト作成のプロセス自体をリデザインした。",
+    date: "2025.5 - 2025.9",
+    tags: ["ShiftUI", "Nurseism", "Time-reduction"],
+    roles: ["UIUX Design", "Service Design", "Information Architect"],
+    mediaFile: "Nafty.mp4",
   },
-  blocks: PLACEHOLDER_DETAIL_BLOCKS,
-};
-
-const FLEX_CAPITAL_DETAIL: WorkDetailConfig = {
-  hero: {
-    headline: "**Flex Capital**",
-    summary:
-      "株式会社Fivot。\nサムネイル・画像・説明文は追って追加予定です。",
-    date: "—",
-    tags: ["準備中"],
-    roles: ["—"],
-  },
-  blocks: PLACEHOLDER_DETAIL_BLOCKS,
+  blocks: [
+    {
+      sectionNumber: 3,
+      type: "doubleBarTwo",
+      eyebrow: "Background",
+      title: "シフトはスタッフのスキルや家庭事情などの複雑な状況を捉えた上で作成される",
+      body:
+        "医療現場におけるシフト作成は、単なるスケジュール調整ではなく、勤務希望、スキルバランス、法的制約、連勤・夜勤の連続性など、多数の条件が複雑に絡み合う制約充足問題であった。その結果、多くの現場ではシフト作成に毎月2〜3日を費やし、担当者の大きな負担となっている。一方で、数理最適化を用いたシステムも存在するが、設定の難易度が高く、現場への導入率は10%未満に留まっている。つまり課題は「効率化ツールがないこと」ではなく、「人が扱える形で複雑さを扱えていないこと」にあった。",
+    },
+    {
+      sectionNumber: 4,
+      type: "lineOne",
+      eyebrow: "Architecture",
+      title: "数式を扱うのではなく、\n意図を扱う設計へ",
+      body:
+        "従来の「条件を設定して最適化する」というアプローチを見直し、「人の意図を起点にシフトを生成する」設計へと転換。ユーザーは複雑な条件を入力する代わりに、「子供が小さいから夜遅くのシフトは入れたくない」「この人とこの人は基本セットで勤務させたい」といった自然言語で意図を伝えるだけで、AIが制約へと変換し、最適なシフトを生成。AIと数理最適化を接続し、「人の思考プロセス」と「アルゴリズムの処理」を橋渡しする体験設計を行った。",
+    },
+    {
+      sectionNumber: 6,
+      type: "mediaTextTwoCol",
+      eyebrow: "Experience",
+      title: "シフト作成を、\n対話する体験へ",
+      body:
+        "Naftyの体験は、従来のシステムのような入力作業ではなく、AIとの対話を通じて進行。シフトはワンクリックで自動生成され、その後の調整も「もう少し均等にしたい」「この週は人を厚くしたい」といった曖昧なリクエストを伝えるだけで反映・編集できるような体験を構築した。さらに、現場の看護師はモバイルアプリから希望提出や確認ができ、シフト作成者と現場の間にあったコミュニケーションコストも大きく削減された。",
+    },
+    {
+      sectionNumber: 7,
+      type: "imageLeftTextRight",
+      eyebrow: "Experience",
+      title: "3日かかっていた業務を、30分へ",
+      body:
+        "Naftyの導入により、シフト作成にかかる時間は従来の約3日から、最短30分まで短縮。また、導入した医療機関では継続率100%を記録しており、「精神的な負担が大きく軽減された」という声も多く寄せられている。さらに、本プロジェクトは iF Design Award を受賞し、その革新性と社会的意義が国際的にも評価された。単なる効率化にとどまらず、医療現場における働き方そのものを改善するプロダクトとして成果を上げている。",
+    },
+  ],
 };
 
 const CREATIVE_ASSET_PRODUCTION_DETAIL: WorkDetailConfig = {
   hero: {
-    headline: "**クリエイティブアセット制作**",
+    headline: "**クラウド・AIを**\n**伝わるカタチ**に\nデザインする",
     summary:
-      "株式会社センティリオンシステム。\nサムネイル・画像・説明文は追って追加予定です。",
-    date: "—",
-    tags: ["準備中"],
-    roles: ["—"],
+      "クラウド活用やAI導入は、多くの企業にとって必要不可欠でありながら、その価値や活用イメージは十分に伝わっていないケースが多く存在する。本プロジェクトでは、センティリオンシステムの提供価値を、抽象から具体へと自然につながる構造として設計し、サービス理解から問い合わせへとつながる体験を構築。",
+    date: "2025.6 - Now",
+    tags: ["Cloud", "AI-Transformation", "Intangible-services"],
+    roles: ["UIUX Design", "Service Design", "Information Architect"],
+    mediaFile: "Centillion-system.mp4",
   },
-  blocks: PLACEHOLDER_DETAIL_BLOCKS,
+  blocks: [
+    {
+      sectionNumber: 2,
+      type: "quoteTwoRight",
+      eyebrow: "Background",
+      title: "無形サービスを、理解される状態へ",
+      body:
+        "無形サービスを提供する企業にとって、「何をしている会社なのか」「依頼すると何が実現できるのか」は伝わりづらい。センティリオンシステムも例外ではなく、クラウド・AIという専門性の高さゆえに、サービスの価値や提供範囲が直感的に理解されにくく、情報を見ても自分ごと化されにくい状態にあった。従来の構成ではサービスの羅列に留まり、理解される前に離脱される構造になっていたため、本プロジェクトでは単なるデザイン刷新ではなく、“無形サービスを伝わる体験へ再設計すること”を目的に、情報設計から見直しを行った。",
+    },
+    {
+      sectionNumber: 6,
+      type: "mediaTextTwoCol",
+      eyebrow: "Approach",
+      title: "抽象から具体へ、\n意思決定を導く\n構造設計",
+      body:
+        "UIやビジュアルの前に、まず「理解される構造」を設計することから着手した。ユーザーは最初からサービス詳細を理解できるわけではないため、VisionやValueといった抽象情報からServiceやCaseといった具体情報へ自然に遷移する体験を設計し、情報の順序そのものを再構築した。また、コンバージョンに至る心理プロセスを「共感・期待・行動」の3ステップに分解し、それぞれに必要な情報を定義して全チャネルに一貫して適用。さらに、専門性の高い内容をそのまま提示するのではなく、概念と具体事例を往復させることで理解負荷を下げ、「読めばわかる」ではなく「見れば理解できる」状態を目指した。",
+    },
+    {
+      sectionNumber: 5,
+      type: "quoteTwoLeft",
+      eyebrow: "Experience",
+      title: "すべての接点を、体験に変える",
+      body:
+        "コーポレートサイト単体ではなく、複数の接点を横断した体験として設計した。Webサイトでは初回訪問ユーザーに対して共感から期待、行動へとスムーズに遷移する導線を構築し、情報の粒度と順序を最適化。サービス資料やパンフレットでは課題の言語化から提供価値の理解、事例による納得までを一貫した流れとして設計し、「読む資料」ではなく意思決定を後押しする体験へと再構築した。さらにイベントブースでは、遠目で興味を引き、内容を理解し、対話へとつなげる流れを空間として設計し、壁面・展示台それぞれに役割を持たせることで短時間でも価値が伝わる構造を実現。これらすべてを「粒子=知の集合」というビジュアルコンセプトで統一し、チャネルを横断して一貫したブランド体験を構築した。",
+    },
+    {
+      sectionNumber: 4,
+      type: "lineOne",
+      eyebrow: "My Role",
+      title: "戦略から実装まで、\n体験を一貫して設計",
+      body:
+        "体験設計からアウトプットまでを一貫して担当し、単一制作物ではなく複数チャネルを横断した設計として統合した。具体的には、UX設計および情報設計、サイトマップと導線設計、デザインコンセプトの策定、ビジュアルデザイン（Web・サービス資料・パンフレット・イベントブース）、コンテンツ構成およびコピー設計までを担当し、戦略から表現までを一貫して設計することで、無形サービスを「理解される状態」に変換した。",
+    },
+  ],
 };
 
 const IDARE_DETAIL: WorkDetailConfig = {
@@ -958,7 +1054,6 @@ export function getWorkDetailConfig(slug: string): WorkDetailConfig {
   else if (slug === "kume-sekkei") base = KUME_SEKKEI_DETAIL;
   else if (slug === "atom-interaction") base = ATOM_INTERACTION_DETAIL;
   else if (slug === "nafty") base = NAFTY_DETAIL;
-  else if (slug === "flex-capital") base = FLEX_CAPITAL_DETAIL;
   else if (slug === "creative-asset-production") base = CREATIVE_ASSET_PRODUCTION_DETAIL;
   else
     base = {

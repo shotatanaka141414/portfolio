@@ -163,7 +163,7 @@ export function WorkDetailHero({
             <WorkDetailHeroMedia file={hero.mediaFile ?? work.videoFile} />
           </div>
 
-          {work.awards?.length ? (
+          {work.awards?.some((a) => a === "gooddesign" || a === "reddot") ? (
             <div className="pointer-events-none absolute right-3 top-[-12px] z-10 flex flex-col items-end gap-1 sm:right-4 sm:top-[-8px] md:gap-1">
               {work.awards.includes("gooddesign") && (
                 <img
@@ -179,6 +179,16 @@ export function WorkDetailHero({
                   className="h-[64px] w-[64px] sm:h-[88px] sm:w-[88px] md:h-[110px] md:w-[110px]"
                 />
               )}
+            </div>
+          ) : null}
+
+          {work.awards?.includes("if-design") ? (
+            <div className="pointer-events-none absolute right-3 top-3 z-10 sm:right-4 sm:top-4">
+              <img
+                src={publicAssetUrl("/images/works/award-if-design-2026.png")}
+                alt="iF Design Award 2026"
+                className="h-[36px] w-[70px] object-contain object-right sm:h-[50px] sm:w-[98px] md:h-[62px] md:w-[120px]"
+              />
             </div>
           ) : null}
 
